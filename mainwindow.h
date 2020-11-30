@@ -17,5 +17,10 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    /*!
+     * \brief init  窗口启动时初始化相关操作
+     */
+    void init();
 };
 #endif // MAINWINDOW_H

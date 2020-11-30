@@ -2,6 +2,12 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,9 +20,350 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>文件(&amp;F)</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>编辑(&amp;E)</string>
+    </property>
+    <addaction name="actionRevoke"/>
+    <addaction name="actionRestore"/>
+    <addaction name="separator"/>
+    <addaction name="actionFullScreen"/>
+    <addaction name="actionExitFullScreen"/>
+   </widget>
+   <widget class="QMenu" name="menu_V">
+    <property name="title">
+     <string>视图(&amp;V)</string>
+    </property>
+    <addaction name="actionZoom"/>
+    <addaction name="actionReduction"/>
+    <addaction name="actionAdaptive"/>
+    <addaction name="separator"/>
+    <addaction name="actionClockwiseRotation"/>
+    <addaction name="actionAnticlockwiseRotation"/>
+    <addaction name="actionCenterRotation"/>
+    <addaction name="separator"/>
+    <addaction name="actionFlipLeftRight"/>
+    <addaction name="actionFlipUpDown"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menu_V"/>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionNew"/>
+   <addaction name="actionOpen"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionRevoke"/>
+   <addaction name="actionRestore"/>
+   <addaction name="separator"/>
+  </widget>
+  <widget class="QDockWidget" name="dockTools">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="windowTitle">
+    <string>工具箱</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <widget class="QPushButton" name="btnCurve">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>124</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="whatsThis">
+      <string/>
+     </property>
+     <property name="accessibleDescription">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="app_imgprocess.qrc">
+       <normaloff>:/Image/toolbox/Painbrush.png</normaloff>:/Image/toolbox/Painbrush.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnLine">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="app_imgprocess.qrc">
+       <normaloff>:/Image/toolbox/Line.png</normaloff>:/Image/toolbox/Line.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnCircle">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>272</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="app_imgprocess.qrc">
+       <normaloff>:/Image/toolbox/Circle.png</normaloff>:/Image/toolbox/Circle.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnOval">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>198</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="app_imgprocess.qrc">
+       <normaloff>:/Image/toolbox/Elipse.png</normaloff>:/Image/toolbox/Elipse.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSquare">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>420</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="app_imgprocess.qrc">
+       <normaloff>:/Image/toolbox/Square.png</normaloff>:/Image/toolbox/Square.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnRectangle">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>346</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="app_imgprocess.qrc">
+       <normaloff>:/Image/toolbox/Rectangle.png</normaloff>:/Image/toolbox/Rectangle.png</iconset>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/file/New.png</normaloff>:/Image/file/New.png</iconset>
+   </property>
+   <property name="text">
+    <string>新建(&amp;N)</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/file/Open.png</normaloff>:/Image/file/Open.png</iconset>
+   </property>
+   <property name="text">
+    <string>打开(&amp;O)</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/file/Save.png</normaloff>:/Image/file/Save.png</iconset>
+   </property>
+   <property name="text">
+    <string>保存(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/file/SaveAs.png</normaloff>:/Image/file/SaveAs.png</iconset>
+   </property>
+   <property name="text">
+    <string>另存为(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/file/Close.png</normaloff>:/Image/file/Close.png</iconset>
+   </property>
+   <property name="text">
+    <string>退出(&amp;X)</string>
+   </property>
+  </action>
+  <action name="actionRevoke">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/edit/Edit_Cancel.png</normaloff>:/Image/edit/Edit_Cancel.png</iconset>
+   </property>
+   <property name="text">
+    <string>撤销(&amp;Z)</string>
+   </property>
+  </action>
+  <action name="actionRestore">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/edit/Edit_Resume.png</normaloff>:/Image/edit/Edit_Resume.png</iconset>
+   </property>
+   <property name="text">
+    <string>恢复(&amp;Y)</string>
+   </property>
+  </action>
+  <action name="actionFullScreen">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/edit/Edit_Full.png</normaloff>:/Image/edit/Edit_Full.png</iconset>
+   </property>
+   <property name="text">
+    <string>全屏显示</string>
+   </property>
+  </action>
+  <action name="actionExitFullScreen">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/edit/Edit_Max.png</normaloff>:/Image/edit/Edit_Max.png</iconset>
+   </property>
+   <property name="text">
+    <string>退出全屏(&amp;Esc)</string>
+   </property>
+  </action>
+  <action name="actionZoom">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/geom/Geom_Enlarge.png</normaloff>:/Image/geom/Geom_Enlarge.png</iconset>
+   </property>
+   <property name="text">
+    <string>图像放大</string>
+   </property>
+  </action>
+  <action name="actionReduction">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/geom/Geom_Reduce.png</normaloff>:/Image/geom/Geom_Reduce.png</iconset>
+   </property>
+   <property name="text">
+    <string>图像缩小</string>
+   </property>
+  </action>
+  <action name="actionAdaptive">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/geom/Geom_Default.png</normaloff>:/Image/geom/Geom_Default.png</iconset>
+   </property>
+   <property name="text">
+    <string>自适应窗口</string>
+   </property>
+  </action>
+  <action name="actionClockwiseRotation">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/geom/Geom_RotateRight.png</normaloff>:/Image/geom/Geom_RotateRight.png</iconset>
+   </property>
+   <property name="text">
+    <string>顺时针旋转</string>
+   </property>
+  </action>
+  <action name="actionAnticlockwiseRotation">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/geom/Geom_RotateLeft.png</normaloff>:/Image/geom/Geom_RotateLeft.png</iconset>
+   </property>
+   <property name="text">
+    <string>逆时针旋转</string>
+   </property>
+  </action>
+  <action name="actionCenterRotation">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/geom/Geom_RotateCenter.png</normaloff>:/Image/geom/Geom_RotateCenter.png</iconset>
+   </property>
+   <property name="text">
+    <string>中心旋转</string>
+   </property>
+  </action>
+  <action name="actionFlipLeftRight">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/geom/Geom_FlipX.png</normaloff>:/Image/geom/Geom_FlipX.png</iconset>
+   </property>
+   <property name="text">
+    <string>左右翻转</string>
+   </property>
+  </action>
+  <action name="actionFlipUpDown">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/geom/Geom_FlipY.png</normaloff>:/Image/geom/Geom_FlipY.png</iconset>
+   </property>
+   <property name="text">
+    <string>上下翻转</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="app_imgprocess.qrc"/>
+ </resources>
  <connections/>
 </ui>
