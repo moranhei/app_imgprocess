@@ -15,11 +15,29 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    /**
+     * @brief on_actionNew_triggered  新建图像文件
+     */
+    void on_actionNew_triggered();
+    /**
+     * @brief on_actionOpen_triggered  打开图像文件
+     */
+    void on_actionOpen_triggered();
+    /**
+     * @brief on_actionSave_triggered  保存文件
+     */
+    void on_actionSave_triggered();
+    /**
+     * @brief on_actionSaveAs_triggered  文件另存为
+     */
+    void on_actionSaveAs_triggered();
+
 private:
     Ui::MainWindow *ui;
 
-    /*!
-     * \brief init  窗口启动时初始化相关操作
+    /**
+     * @brief init  窗口启动时初始化相关操作
      */
     void init();
 };
