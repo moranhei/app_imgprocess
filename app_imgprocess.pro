@@ -20,10 +20,12 @@ include(algorithm/algorithm.pri)
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    qimggraphicsview.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    qimggraphicsview.h
 
 FORMS += \
     mainwindow.ui

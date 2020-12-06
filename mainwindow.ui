@@ -20,34 +20,9 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QGraphicsView" name="graphicsView">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="acceptDrops">
-       <bool>true</bool>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustIgnored</enum>
-      </property>
-      <property name="dragMode">
-       <enum>QGraphicsView::NoDrag</enum>
-      </property>
-      <property name="resizeAnchor">
-       <enum>QGraphicsView::NoAnchor</enum>
-      </property>
-      <property name="viewportUpdateMode">
-       <enum>QGraphicsView::MinimalViewportUpdate</enum>
-      </property>
-     </widget>
+     <widget class="QImgGraphicsView" name="view"/>
     </item>
    </layout>
   </widget>
@@ -129,121 +104,114 @@
     <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents">
-    <widget class="QPushButton" name="btnCurve">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>124</y>
-       <width>30</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="whatsThis">
-      <string/>
-     </property>
-     <property name="accessibleDescription">
-      <string/>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="app_imgprocess.qrc">
-       <normaloff>:/Image/toolbox/Painbrush.png</normaloff>:/Image/toolbox/Painbrush.png</iconset>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnLine">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>50</y>
-       <width>30</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="app_imgprocess.qrc">
-       <normaloff>:/Image/toolbox/Line.png</normaloff>:/Image/toolbox/Line.png</iconset>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnCircle">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>272</y>
-       <width>30</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="app_imgprocess.qrc">
-       <normaloff>:/Image/toolbox/Circle.png</normaloff>:/Image/toolbox/Circle.png</iconset>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnOval">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>198</y>
-       <width>30</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="app_imgprocess.qrc">
-       <normaloff>:/Image/toolbox/Elipse.png</normaloff>:/Image/toolbox/Elipse.png</iconset>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnSquare">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>420</y>
-       <width>30</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="app_imgprocess.qrc">
-       <normaloff>:/Image/toolbox/Square.png</normaloff>:/Image/toolbox/Square.png</iconset>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnRectangle">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>346</y>
-       <width>30</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="app_imgprocess.qrc">
-       <normaloff>:/Image/toolbox/Rectangle.png</normaloff>:/Image/toolbox/Rectangle.png</iconset>
-     </property>
-    </widget>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="btnLine">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="app_imgprocess.qrc">
+         <normaloff>:/Image/toolbox/Line.png</normaloff>:/Image/toolbox/Line.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnCurve">
+       <property name="whatsThis">
+        <string/>
+       </property>
+       <property name="accessibleDescription">
+        <string/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="app_imgprocess.qrc">
+         <normaloff>:/Image/toolbox/Painbrush.png</normaloff>:/Image/toolbox/Painbrush.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnOval">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="app_imgprocess.qrc">
+         <normaloff>:/Image/toolbox/Elipse.png</normaloff>:/Image/toolbox/Elipse.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnCircle">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="app_imgprocess.qrc">
+         <normaloff>:/Image/toolbox/Circle.png</normaloff>:/Image/toolbox/Circle.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnRectangle">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="app_imgprocess.qrc">
+         <normaloff>:/Image/toolbox/Rectangle.png</normaloff>:/Image/toolbox/Rectangle.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnSquare">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="app_imgprocess.qrc">
+         <normaloff>:/Image/toolbox/Square.png</normaloff>:/Image/toolbox/Square.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QDockWidget" name="dockWidget_2">
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_3"/>
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>100</y>
+       <width>150</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>290</y>
+       <width>150</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <action name="actionNew">
    <property name="icon">
@@ -399,6 +367,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QImgGraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">qimggraphicsview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="app_imgprocess.qrc"/>
  </resources>

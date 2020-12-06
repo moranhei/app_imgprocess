@@ -10,7 +10,7 @@
 
 /*****************文件操作相关错误标志****************/
 #define ERR_FILE_NOT_EXIST          10  //!< 访问文件不存在
-#define ERR_IMAGE_IS_EMPTY          11  //!< 访问图像为空
+#define ERR_IMAGE_IS_EMPTY          11  //!< 图像为空
 
 
 
