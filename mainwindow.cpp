@@ -32,6 +32,8 @@ void MainWindow::init()
     lbPixelVaule = new QLabel();
     ui->statusbar->addPermanentWidget(lbPixelPosition);
     ui->statusbar->addPermanentWidget(lbPixelVaule);
+    ui->actionExitFullScreen->setShortcut(QKeySequence(Qt::Key_Escape)); //!< 设置热键为ESC
+    ui->actionFullScreen->setShortcut(QKeySequence(Qt::Key_F11));
 
     scene = new QGraphicsScene;
 //    itemPixmap = new QGraphicsPixmapItem();
@@ -45,6 +47,8 @@ void MainWindow::init()
     ui->view->setMouseTracking(true); //!< 如果鼠标追踪关闭，则只有按下鼠标移动时，才会触发鼠标移动事件
     ui->view->setCursor(Qt::CrossCursor); //设置鼠标样式为十字架
     ui->view->setDragMode(QGraphicsView::RubberBandDrag);
+    ui->view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //!< 关闭水平和竖直的滚动条
+    ui->view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     connect(ui->view, SIGNAL(mouseMovePoint(QPoint)),
             this, SLOT(on_mouseMovePoint(QPoint)));
@@ -54,45 +58,57 @@ void MainWindow::init()
 //    ui->view->setInteractive(true);
 //    connect(ui->graphicsView, SIGNAL(keyPress(QKeyEvent *)), this, SLOT(on_keyPress(QKeyEvent *)));
 
+    //!< 软件启动会自动新建一个空白图元，避免图元未实例化导致异常
+    qImageFile = QImage(500, 500, QImage::Format_RGB32);
+    qImageFile.fill(qRgb(255, 255, 255));
+    showImage(qImageFile);
+
 }
 
 void MainWindow::showImage(QImage qImg)
 {
     scene->clear();
-//    scene->removeItem(itemPixmap);
-    itemPixmap = new QGraphicsPixmapItem();
+    itemPixmap = new QImgGraphicsItem(&QPixmap::fromImage(qImg));
+    int widthView = ui->view->width();
+    int heightView = ui->view->height();
+//    itemPixmap->setQGraphicsView(widthView, heightView);
     itemPixmap->setAcceptDrops(true);
     itemPixmap->setFlag(QGraphicsItem::ItemIsMovable); //!< 该语句实现鼠标长按移动图像
-    itemPixmap->setPixmap(QPixmap::fromImage(qImg));
     //! 将图元的中心坐标移动到在scene坐标系中的参数位置；将图元的中心与scene的中心重合，默认图元的左上角点与scene的中心原点重合
-    itemPixmap->setPos(-round(qImg.width() / 2), -round(qImg.height() / 2));
+//    itemPixmap->setPos(-round(qImg.width() / 2), -round(qImg.height() / 2));
+//    itemPixmap->pos();
     scene->addItem(itemPixmap);
-//    scene->clearSelection();
-//    itemPixmap->setSelected(true);
+//    scene->setSceneRect(QRectF(-widthView / 2, -heightView / 2, widthView, heightView));
+    ui->view->setSceneRect(QRectF(-widthView / 2, -heightView / 2, widthView, heightView)); //!< 固定视图中场景大小，第一第二个参数为视图原点在场景坐标系中的位置
+    ui->view->setFocus(); //!< 将界面的焦点设置到当前view控件
 }
 
 
 void MainWindow::on_actionNew_triggered()
 {
-    QGraphicsScene *scene = new QGraphicsScene;
-    scene->setSceneRect(-100, -100, 100, 100);
-    qDebug() << scene->width() << " " << scene->height() << " " << scene->sceneRect();
-    QGraphicsTextItem *itemText = new QGraphicsTextItem("Hello QT");
-    QGraphicsRectItem *itemRect = new QGraphicsRectItem;
-    itemRect->setRect(0, 0, 300, 300);
-    QGraphicsLineItem *itemLine = new QGraphicsLineItem;
-    itemLine->setLine(0, 0, 600, 0);
-//    ui->graphicsView->setAlignment(Qt::AlignCenter);
-//    ui->graphicsView->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-//    itemLine->setPos(scene->sceneRect().topLeft());
-    qDebug() << u8"中心点:" << scene->sceneRect().center();
-    qDebug() << u8"左上角点:" << scene->sceneRect().topLeft();
-    scene->addItem(itemLine);
-    scene->addItem(itemText);
-    scene->addItem(itemRect);
-//        scene->addRect(100, 100, 400, 300);  //!< 在场景中添加相对于试视图的指定位置和尺寸的矩形
-    ui->view->setScene(scene);
-    ui->view->show();
+    QImage defaultImage = QImage(500, 500, QImage::Format_Grayscale8);
+    defaultImage.fill(255);
+    showImage(defaultImage);
+
+//    QGraphicsScene *scene = new QGraphicsScene;
+//    scene->setSceneRect(-100, -100, 100, 100);
+//    qDebug() << scene->width() << " " << scene->height() << " " << scene->sceneRect();
+//    QGraphicsTextItem *itemText = new QGraphicsTextItem("Hello QT");
+//    QGraphicsRectItem *itemRect = new QGraphicsRectItem;
+//    itemRect->setRect(0, 0, 300, 300);
+//    QGraphicsLineItem *itemLine = new QGraphicsLineItem;
+//    itemLine->setLine(0, 0, 600, 0);
+////    ui->graphicsView->setAlignment(Qt::AlignCenter);
+////    ui->graphicsView->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+////    itemLine->setPos(scene->sceneRect().topLeft());
+//    qDebug() << u8"中心点:" << scene->sceneRect().center();
+//    qDebug() << u8"左上角点:" << scene->sceneRect().topLeft();
+//    scene->addItem(itemLine);
+//    scene->addItem(itemText);
+//    scene->addItem(itemRect);
+////        scene->addRect(100, 100, 400, 300);  //!< 在场景中添加相对于试视图的指定位置和尺寸的矩形
+//    ui->view->setScene(scene);
+//    ui->view->show();
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -140,7 +156,11 @@ void MainWindow::on_mouseMovePoint(QPoint point)
         qCritical() << u8"错误代码:" << ERR_IMAGE_IS_EMPTY;
         return;
     }
-    QPointF pointPix = itemPixmap->mapFromScene(pointScene);
+    //! 当前设置下，场景原点与图元原点重合，如果图元没有自适应大小，则某点在场景和图元中的位置相同；
+    //! 但是如果图元自适应大小后，某点在场景和图元中的位置成倍数关系，这时通过mapFromScene可以进行转换，将场景坐标转换为图元中坐标；
+    //! 但是因为场景与图元原点重合，故需要偏移半个图元大小尺寸，除非利用setPos将图元中心移动到左上角点
+    QPointF pointPix = itemPixmap->mapFromScene(pointScene) + QPointF(qImageFile.width() * 0.5, qImageFile.height() * 0.5);
+    qDebug() << itemPixmap->scenePos(); //!< 返回的是图元中心在场景中的位置，如果返回为(0,0)表示图元中心与场景中心重合
     if ((pointPix.x() >= qImageFile.width()) | (pointPix.x() < 0) | (pointPix.y() >= qImageFile.height()) | (pointPix.y() < 0)) {
         lbPixelPosition->setText(u8"像素坐标:(00,00)");
         lbPixelVaule->setText(u8"像素值:(00,00,00)");
@@ -165,14 +185,21 @@ void MainWindow::on_keyPress(QKeyEvent *event)
     if (event->key() == Qt::Key_Delete) //删除
         scene->removeItem(itemPixmap);
     else if (event->key() == Qt::Key_Space) { //顺时针旋转90度
-        itemPixmap->setTransformOriginPoint(round(qImageFile.width() / 2), round(qImageFile.height() / 2)); //!< 以图元的中心进行旋转
+        //!< 设置旋转中心（场景坐标系），假设图像尺寸120*240，那么下方设置后的旋转中心为场景坐标系中的(60,120)
+//        itemPixmap->setTransformOriginPoint(round(qImageFile.width() / 2), round(qImageFile.height() / 2));
         itemPixmap->setRotation(90 + itemPixmap->rotation());
     } else if (event->key() == Qt::Key_PageUp) { //放大
-        itemPixmap->setTransformOriginPoint(round(qImageFile.width() / 2), round(qImageFile.height() / 2)); //!< 以图元的中心进行放大
-        itemPixmap->setScale(0.1 + itemPixmap->scale());
+        if (itemPixmap->scale() >= 50)
+            return;
+//        itemPixmap->setTransformOriginPoint(itemPixmap->pos()); //!< 以图元的中心进行放大
+        itemPixmap->setScale(1.1 * itemPixmap->scale()); //!< 默认以中心进行放大
     } else if (event->key() == Qt::Key_PageDown) { //缩小
-        itemPixmap->setTransformOriginPoint(round(qImageFile.width() / 2), round(qImageFile.height() / 2)); //!< 以图元的中心进行缩小
-        itemPixmap->setScale(-0.1 + itemPixmap->scale());
+        if (itemPixmap->scale() <= itemPixmap->getScaleDefault()) {
+            itemPixmap->resetItemPos();
+            return;
+        }
+//        itemPixmap->setTransformOriginPoint(round(qImageFile.width() / 2), round(qImageFile.height() / 2)); //!< 以图元的中心进行缩小
+        itemPixmap->setScale(0.9 * itemPixmap->scale());
     } else if (event->key() == Qt::Key_Left) //左移
         itemPixmap->setX(-1 + itemPixmap->x());
     else if (event->key() == Qt::Key_Right) //右移
@@ -185,45 +212,76 @@ void MainWindow::on_keyPress(QKeyEvent *event)
 
 void MainWindow::on_actionExit_triggered()
 {
-
+    close();
 }
 
 void MainWindow::on_actionZoom_triggered()
 {
-
+    if (itemPixmap->scale() >= 50)
+        return;
+    itemPixmap->setScale(1.1 * itemPixmap->scale()); //!< 默认以中心进行放大
 }
 
 void MainWindow::on_actionReduction_triggered()
 {
-
+    if (itemPixmap->scale() <= itemPixmap->getScaleDefault()) {
+        itemPixmap->resetItemPos();
+        return;
+    }
+    itemPixmap->setScale(0.9 * itemPixmap->scale());
 }
 
 void MainWindow::on_actionAdaptive_triggered()
 {
-
+    int widthView = ui->view->width();
+    int heightView = ui->view->height();
+//    qDebug() << u8"视图宽度:" << widthView;
+    itemPixmap->setQGraphicsView(widthView, heightView);
+    itemPixmap->resetItemPos();
 }
 
 void MainWindow::on_actionClockwiseRotation_triggered()
 {
-
+    itemPixmap->setRotation(90 + itemPixmap->rotation());
 }
 
 void MainWindow::on_actionAnticlockwiseRotation_triggered()
 {
-
+    itemPixmap->setRotation(-90 + itemPixmap->rotation());
 }
 
 void MainWindow::on_actionCenterRotation_triggered()
 {
-
+    itemPixmap->setScale(-1 * itemPixmap->scale()); //!< 中心旋转，即旋转180度
 }
 
 void MainWindow::on_actionFlipLeftRight_triggered()
 {
+    //! 另外一种图像放大方法
+    //! 且setTransform是QT中建议的图像变换方法，其包括了缩放旋转等相关操作
+//    QTransform transform;
+//    transform.scale(1.2, 1.5); //!< 分别设置沿X轴和Y轴的放大倍数
+//    itemPixmap->setTransform(transform, true);
 
+    QTransform transform;
+    transform.rotate(180, Qt::YAxis); //视图绕x轴旋转180度
+    itemPixmap->setTransform(transform, true); //!< 选择true表示每次的翻转对象都是基于上一次的翻转结果
+//    ui->view->setTransform(transform);
 }
 
 void MainWindow::on_actionFlipUpDown_triggered()
 {
+    QTransform transform;
+    transform.rotate(180, Qt::XAxis); //视图绕x轴旋转180度
+    itemPixmap->setTransform(transform, true);
+}
 
+void MainWindow::on_actionFullScreen_triggered()
+{
+    showFullScreen();
+}
+
+void MainWindow::on_actionExitFullScreen_triggered()
+{
+    showMaximized();
 }

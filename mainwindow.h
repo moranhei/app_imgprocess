@@ -6,6 +6,8 @@
 #include <QGraphicsPixmapItem>
 #include <QLabel>
 
+#include <qimggraphicsitem.h>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -74,6 +76,10 @@ private slots:
      */
     void on_actionFlipUpDown_triggered();
 
+    void on_actionFullScreen_triggered();
+
+    void on_actionExitFullScreen_triggered();
+
 signals:
     /**
      * @brief wheelEvent  针对鼠标滚轮的操作，即放大图像
@@ -83,9 +89,10 @@ signals:
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
-    QGraphicsPixmapItem *itemPixmap;
+//    QGraphicsPixmapItem *itemPixmap;
     QLabel *lbPixelPosition;
     QLabel *lbPixelVaule;
+    QImgGraphicsItem *itemPixmap;
     /**
      * @brief init  窗口启动时初始化相关操作
      */
