@@ -5,8 +5,10 @@
 #include <QGraphicsView>
 #include <QGraphicsPixmapItem>
 #include <QLabel>
-
 #include <qimggraphicsitem.h>
+
+#include "algorithm/cerror.h"
+#include "modules/drawLabel/cdrawlabel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -80,6 +82,12 @@ private slots:
 
     void on_actionExitFullScreen_triggered();
 
+    void on_actionBack_triggered();
+
+    void on_actionNext_triggered();
+
+    void on_btnRectangle_clicked();
+
 signals:
     /**
      * @brief wheelEvent  针对鼠标滚轮的操作，即放大图像
@@ -105,6 +113,7 @@ public:
      */
     void showImage(QImage qImg);
     QImage qImageFile;
+    Modules::CDrawLabel *newLabel;
 
 protected:
 };

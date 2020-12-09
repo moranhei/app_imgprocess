@@ -20,7 +20,168 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,25">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::West</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_1">
+       <attribute name="title">
+        <string>绘图工具</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QPushButton" name="btnLine">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="app_imgprocess.qrc">
+              <normaloff>:/Image/toolbox/Line.png</normaloff>:/Image/toolbox/Line.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnCurve">
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="accessibleDescription">
+             <string/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="app_imgprocess.qrc">
+              <normaloff>:/Image/toolbox/Painbrush.png</normaloff>:/Image/toolbox/Painbrush.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnOval">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="app_imgprocess.qrc">
+              <normaloff>:/Image/toolbox/Elipse.png</normaloff>:/Image/toolbox/Elipse.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnCircle">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="app_imgprocess.qrc">
+              <normaloff>:/Image/toolbox/Circle.png</normaloff>:/Image/toolbox/Circle.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnRectangle">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="app_imgprocess.qrc">
+              <normaloff>:/Image/toolbox/Rectangle.png</normaloff>:/Image/toolbox/Rectangle.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnSquare">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="app_imgprocess.qrc">
+              <normaloff>:/Image/toolbox/Square.png</normaloff>:/Image/toolbox/Square.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>选区工具</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_1">
+            <property name="text">
+             <string>Text</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Text</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Text</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Text</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
     <item>
      <widget class="QImgGraphicsView" name="view">
       <property name="backgroundBrush">
@@ -63,6 +224,9 @@
     <addaction name="actionRevoke"/>
     <addaction name="actionRestore"/>
     <addaction name="separator"/>
+    <addaction name="actionBack"/>
+    <addaction name="actionNext"/>
+    <addaction name="separator"/>
     <addaction name="actionFullScreen"/>
     <addaction name="actionExitFullScreen"/>
    </widget>
@@ -103,125 +267,11 @@
    <addaction name="actionRestore"/>
    <addaction name="separator"/>
   </widget>
-  <widget class="QDockWidget" name="dockTools">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="windowTitle">
-    <string>工具箱</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>1</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents">
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QPushButton" name="btnLine">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="app_imgprocess.qrc">
-         <normaloff>:/Image/toolbox/Line.png</normaloff>:/Image/toolbox/Line.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnCurve">
-       <property name="whatsThis">
-        <string/>
-       </property>
-       <property name="accessibleDescription">
-        <string/>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="app_imgprocess.qrc">
-         <normaloff>:/Image/toolbox/Painbrush.png</normaloff>:/Image/toolbox/Painbrush.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnOval">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="app_imgprocess.qrc">
-         <normaloff>:/Image/toolbox/Elipse.png</normaloff>:/Image/toolbox/Elipse.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnCircle">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="app_imgprocess.qrc">
-         <normaloff>:/Image/toolbox/Circle.png</normaloff>:/Image/toolbox/Circle.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnRectangle">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="app_imgprocess.qrc">
-         <normaloff>:/Image/toolbox/Rectangle.png</normaloff>:/Image/toolbox/Rectangle.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnSquare">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="app_imgprocess.qrc">
-         <normaloff>:/Image/toolbox/Square.png</normaloff>:/Image/toolbox/Square.png</iconset>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-  </widget>
-  <widget class="QDockWidget" name="dockWidget_2">
+  <widget class="QDockWidget" name="dockWidget_1">
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_3">
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>100</y>
-       <width>150</width>
-       <height>15</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>290</y>
-       <width>150</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-   </widget>
+   <widget class="QWidget" name="dockWidgetContents"/>
   </widget>
   <action name="actionNew">
    <property name="icon">
@@ -376,12 +426,22 @@
     <string>上下翻转</string>
    </property>
   </action>
+  <action name="actionBack">
+   <property name="text">
+    <string> 上一张</string>
+   </property>
+  </action>
+  <action name="actionNext">
+   <property name="text">
+    <string> 下一张</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
    <class>QImgGraphicsView</class>
    <extends>QGraphicsView</extends>
-   <header location="global">qimggraphicsview.h</header>
+   <header>qimggraphicsview.h</header>
   </customwidget>
  </customwidgets>
  <resources>

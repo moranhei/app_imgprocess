@@ -8,8 +8,6 @@
 #include <QGraphicsItem>
 #include <QKeyEvent>
 
-#include "algorithm/cerror.h"
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -26,7 +24,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::init()
 {
-    //! https://www.jb51.net/article/194334.htm
+    setWindowTitle("ImageK");
     //! 用于显示像素位置和值
     lbPixelPosition = new QLabel();
     lbPixelVaule = new QLabel();
@@ -42,7 +40,7 @@ void MainWindow::init()
 
     setWindowState(Qt::WindowMaximized);//!< 窗口默认启动最大化
     setWindowIcon(QIcon(":/Image/icon/app_imgprocess.png"));//!< 设置应用程序的图标
-    ui->dockTools->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    ui->dockWidget_1->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     ui->view->setScene(scene);
     ui->view->setMouseTracking(true); //!< 如果鼠标追踪关闭，则只有按下鼠标移动时，才会触发鼠标移动事件
     ui->view->setCursor(Qt::CrossCursor); //设置鼠标样式为十字架
@@ -54,6 +52,7 @@ void MainWindow::init()
             this, SLOT(on_mouseMovePoint(QPoint)));
     connect(ui->view, SIGNAL(keyPress(QKeyEvent *)),
             this, SLOT(on_keyPress(QKeyEvent *)));
+
 //    ui->graphicsView->resize(QSize(500, 500));
 //    ui->view->setInteractive(true);
 //    connect(ui->graphicsView, SIGNAL(keyPress(QKeyEvent *)), this, SLOT(on_keyPress(QKeyEvent *)));
@@ -150,8 +149,12 @@ void MainWindow::on_mouseMovePoint(QPoint point)
 {
     //鼠标移动事件，point是 GraphicsView的坐标,物理坐标
     QPointF pointScene = ui->view->mapToScene(point); //转换到Scene坐标
-    ui->label->setText(QString::asprintf(u8"View坐标：%d,%d", point.x(), point.y()));
-    ui->label_2->setText(QString::asprintf(u8"Scene坐标：%.0f,%.0f", pointScene.x(), pointScene.y()));
+//    ui->label->setText(QString::asprintf(u8"View坐标：%d,%d", point.x(), point.y()));
+//    ui->label_2->setText(QString::asprintf(u8"Scene坐标：%.0f,%.0f", pointScene.x(), pointScene.y()));
+    ui->label_1->setText(QString::number(point.x()));
+    ui->label_2->setText(QString::number(point.y()));
+    ui->label_3->setText(QString::number(pointScene.x()));
+    ui->label_4->setText(QString::number(pointScene.y()));
     if (qImageFile.isNull()) {
         qCritical() << u8"错误代码:" << ERR_IMAGE_IS_EMPTY;
         return;
@@ -284,4 +287,30 @@ void MainWindow::on_actionFullScreen_triggered()
 void MainWindow::on_actionExitFullScreen_triggered()
 {
     showMaximized();
+}
+
+void MainWindow::on_actionBack_triggered()
+{
+
+}
+
+void MainWindow::on_actionNext_triggered()
+{
+
+}
+
+void MainWindow::on_btnRectangle_clicked()
+{
+    QDialog *roiDialog = new QDialog;
+
+    newLabel = new Modules::CDrawLabel(this);
+    newLabel->setShapeType(Modules::RectAngle);
+    newLabel->setText("China");
+    newLabel->setMinimumSize(qImageFile.width(), qImageFile.height());
+    QVBoxLayout * layout = new QVBoxLayout();//铺满布局
+//    newLabel->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);//铺满布局
+
+    layout->addWidget(newLabel);
+    roiDialog->setLayout(layout);
+    roiDialog->show();
 }
