@@ -32,7 +32,7 @@ void QImgGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 
 void QImgGraphicsItem::wheelEvent(QGraphicsSceneWheelEvent *event)
 {
-    //! 大于0表示滚轮往原理用户方向滚动，即放大图像
+    //! 大于0表示滚轮往远离用户方向滚动，即放大图像
     if ((event->delta() > 0) && (scaleValue >= 50)) { //!< 最大放大到原图的50倍
         return;
     } else if ((event->delta() < 0) && (scaleValue <= scaleDefault)) {

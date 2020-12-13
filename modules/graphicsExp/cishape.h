@@ -1,8 +1,10 @@
-﻿#ifndef CDRAWLABEL_H
-#define CDRAWLABEL_H
+﻿#ifndef CISHAPE_H
+#define CISHAPE_H
 
 #include <QLabel>
 #include <QPen>
+#include <QGraphicsItem>
+#include <QGraphicsSceneMouseEvent>
 
 namespace Modules {
 
@@ -14,7 +16,7 @@ typedef enum myShape {
     Ellipse,
     Circle,
     Polygon
-}myShape;
+} myShape;
 
 enum EmDirection {
     DIR_TOP,
@@ -44,26 +46,30 @@ enum EmDirection {
 #define DRAW_TEN_POINT            //绘制十个点
 #define DRAW_SUB_LINE             //绘制辅助线
 
-class CDrawLabel : public QLabel
+class CIShape : public QGraphicsItem
 {
-    Q_OBJECT
+//    Q_OBJECT
 public:
-    CDrawLabel(QWidget *parent = nullptr);
-    ~CDrawLabel();
+    CIShape();
+    ~CIShape();
 
 protected:
+    //! 该函数对Item进行绘制，且是不断的循环执行的
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    //! 该函数在类的初始化时会被自动执行，其定义了Item所在的范围，该范围内会检测鼠标和按键的操作
+    QRectF boundingRect() const;
     void paintEvent(QPaintEvent *event);
-    void mousePressEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     void keyPressEvent(QKeyEvent *event);
 
 private:
     void initViewer();
-    EmDirection mouseDirection(const QPoint &point);
-    void paintShape(const QPoint &point); //!< 形状绘制
-    void scaleShape(const QPoint &mousePoint); //!< 形状缩放
-    void moveShape(const QPoint &mousePoint); //!< 形状移动
+    EmDirection mouseDirection(const QPointF &point);
+    void paintShape(const QPointF &point); //!< 形状绘制
+    void scaleShape(const QPointF &mousePoint); //!< 形状缩放
+    void moveShape(const QPointF &mousePoint); //!< 形状移动
 
 
     bool isPainterPressed; //!< 是否正在绘制
@@ -75,11 +81,12 @@ private:
     EmDirection emCurDirection;
     myShape shapeType;
     QPen pen = QPen(Qt::green, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    QBrush brush = QBrush(QColor(0, 0, 200, 120));
+    QBrush brush = QBrush(QColor(0, 165, 240, 120));
+//    QBrush brush = QBrush(QColor(0, 0, 200, 120));
     QFont font = QFont("Times", 10, QFont::Bold);
-    QPoint paintStartPoint;
-    QPoint moveStartPoint;
-    QRect rectBase; //!< 矩形数据格式，通常的矩形，正方形，椭圆，圆均可以由该数据生成
+    QPointF paintStartPoint;
+    QPointF moveStartPoint;
+    QRectF rectBase; //!< 矩形数据格式，通常的矩形，正方形，椭圆，圆均可以由该数据生成
 
 public:
 //    void setPen(QPen *inPen) {pen = inPen;}

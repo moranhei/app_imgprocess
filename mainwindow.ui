@@ -187,9 +187,9 @@
       <property name="backgroundBrush">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>175</red>
-         <green>175</green>
-         <blue>175</blue>
+         <red>0</red>
+         <green>0</green>
+         <blue>96</blue>
         </color>
        </brush>
       </property>
@@ -203,7 +203,7 @@
      <x>0</x>
      <y>0</y>
      <width>905</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

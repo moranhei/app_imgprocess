@@ -8,6 +8,8 @@
 #include <QGraphicsItem>
 #include <QKeyEvent>
 
+using namespace Modules;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -61,7 +63,6 @@ void MainWindow::init()
     qImageFile = QImage(500, 500, QImage::Format_RGB32);
     qImageFile.fill(qRgb(255, 255, 255));
     showImage(qImageFile);
-
 }
 
 void MainWindow::showImage(QImage qImg)
@@ -301,16 +302,33 @@ void MainWindow::on_actionNext_triggered()
 
 void MainWindow::on_btnRectangle_clicked()
 {
-    QDialog *roiDialog = new QDialog;
+    CIShape *itemShape = new CIShape;
+    itemShape->setShapeType(RectAngle);
+    itemShape->setAcceptDrops(true);
+    itemShape->setFlag(QGraphicsItem::ItemIsMovable);
+    scene->addItem(itemShape);
+    ui->view->setFocus();
 
-    newLabel = new Modules::CDrawLabel(this);
-    newLabel->setShapeType(Modules::RectAngle);
-    newLabel->setText("China");
-    newLabel->setMinimumSize(qImageFile.width(), qImageFile.height());
-    QVBoxLayout * layout = new QVBoxLayout();//铺满布局
-//    newLabel->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);//铺满布局
 
-    layout->addWidget(newLabel);
-    roiDialog->setLayout(layout);
-    roiDialog->show();
+//    QDialog *roiDialog = new QDialog;
+//    newLabel = new Modules::CDrawLabel(this);
+//    newLabel->setShapeType(Modules::RectAngle);
+//    newLabel->setText("China");
+//    newLabel->setMinimumSize(qImageFile.width(), qImageFile.height());
+//    QVBoxLayout * layout = new QVBoxLayout();//铺满布局
+////    newLabel->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);//铺满布局
+
+//    layout->addWidget(newLabel);
+//    roiDialog->setLayout(layout);
+//    roiDialog->show();
+}
+
+void MainWindow::on_btnOval_clicked()
+{
+    CIShape *itemShape = new CIShape;
+    itemShape->setShapeType(Ellipse);
+    itemShape->setAcceptDrops(true);
+    itemShape->setFlag(QGraphicsItem::ItemIsMovable);
+    scene->addItem(itemShape);
+    ui->view->setFocus();
 }

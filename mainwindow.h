@@ -8,7 +8,7 @@
 #include <qimggraphicsitem.h>
 
 #include "algorithm/cerror.h"
-#include "modules/drawLabel/cdrawlabel.h"
+#include "modules/graphicsExp/cishape.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -88,6 +88,8 @@ private slots:
 
     void on_btnRectangle_clicked();
 
+    void on_btnOval_clicked();
+
 signals:
     /**
      * @brief wheelEvent  针对鼠标滚轮的操作，即放大图像
@@ -113,7 +115,7 @@ public:
      */
     void showImage(QImage qImg);
     QImage qImageFile;
-    Modules::CDrawLabel *newLabel;
+//    Modules::CDrawLabel *newLabel;
 
 protected:
 };
