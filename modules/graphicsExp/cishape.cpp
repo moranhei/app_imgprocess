@@ -21,7 +21,6 @@ void CIShape::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 {
     //! 辅助线采用白色虚线；其它全部采用绿色，中间填充采用半透明蓝色
     //    QLabel::paintEvent(event);
-//    QRectF rectBase(50, 50, 200, 200);
     QString strPoint = QString("X:%0, Y:%1").arg(rectBase.x()).arg(rectBase.y());
     QString strSize = QString("W:%0, H:%1").arg(rectBase.width()).arg(rectBase.height());
 

@@ -24,10 +24,7 @@ void CIScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 void CIScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsScene::mousePressEvent(event);
-    qDebug() << this->selectedItems().size();
-//    foreach (QGraphicsItem *item, items(event->scenePos())) {
-//        item->setSelected(true);
-//    }
+//    qDebug() << this->selectedItems().size();
 }
 
 void CIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)

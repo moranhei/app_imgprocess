@@ -6,7 +6,7 @@
 #include "cishape.h"
 
 namespace Modules {
-class CIRectShape : public QGraphicsItem
+class CIRectShape : public CIShape
 {
 public:
     CIRectShape(const QPointF &pt1, const QPointF &pt2, const QPointF &pt3, const QPointF &pt4, const QColor &penColor, qreal penWidth);

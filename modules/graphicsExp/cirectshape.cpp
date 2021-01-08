@@ -14,7 +14,6 @@ CIRectShape::CIRectShape(const QPointF &pt1, const QPointF &pt2, const QPointF &
     setAcceptDrops(true);
 //    setFlag(ItemIsFocusable, true);
 //    setFlag(ItemIsMovable, true);
-////    setFlag(ItemIsSelectable, true);
 //    setAcceptedMouseButtons(Qt::LeftButton);
 //    setFlag(QGraphicsItem::ItemIsSelectable);//必须加上这句，否则item无法获取到鼠标事件
 //    setFlag(ItemSendsGeometryChanges, true);
@@ -70,10 +69,6 @@ void CIRectShape::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
 QRectF CIRectShape::boundingRect() const
 {
-//    return this->boundingRect();
-//    qDebug() << u8"rectBase尺寸:" << rectBase;
-//    QRectF ret = QRectF(-9999, -9999, 99999, 99999);
-//    return ret;
     return rectBase;
 }
 

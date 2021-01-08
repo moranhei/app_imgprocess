@@ -21,7 +21,6 @@ QRectF CIImageShape::boundingRect() const
 {
     //! 根据左上角点和宽高定义一个矩形
     return QRectF(-pix.width() / 2, -pix.height() / 2, pix.width(), pix.height());
-//    return QRectF(-400.0, -400.0, 800.0, 800.0);
 }
 
 void CIImageShape::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)

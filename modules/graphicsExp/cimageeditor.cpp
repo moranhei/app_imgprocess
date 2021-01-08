@@ -24,7 +24,6 @@ CImageEditor::CImageEditor()
 
 CImageEditor::~CImageEditor()
 {
-
 }
 
 void CImageEditor::updateImage(const QImage &image)
