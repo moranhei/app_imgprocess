@@ -9,6 +9,7 @@
 
 #include "algorithm/cerror.h"
 #include "modules/graphicsExp/cishape.h"
+#include "modules/graphicsExp/cimageeditor.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -103,17 +104,13 @@ private:
     QLabel *lbPixelPosition;
     QLabel *lbPixelVaule;
     QImgGraphicsItem *itemPixmap;
+    Modules::CImageEditor *imageEditor;
     /**
      * @brief init  窗口启动时初始化相关操作
      */
     void init();
 
 public:
-    /**
-     * @brief showImg  公用图像显示函数，便于后于图像直接写入并显示在界面控件中
-     * @param qImg  输入图像
-     */
-    void showImage(QImage qImg);
     QImage qImageFile;
 //    Modules::CDrawLabel *newLabel;
 

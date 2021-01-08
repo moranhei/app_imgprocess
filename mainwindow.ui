@@ -183,15 +183,12 @@
      </widget>
     </item>
     <item>
-     <widget class="QImgGraphicsView" name="view">
-      <property name="backgroundBrush">
-       <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>0</red>
-         <green>0</green>
-         <blue>96</blue>
-        </color>
-       </brush>
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
       </property>
      </widget>
     </item>
@@ -437,13 +434,6 @@
    </property>
   </action>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QImgGraphicsView</class>
-   <extends>QGraphicsView</extends>
-   <header>qimggraphicsview.h</header>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="app_imgprocess.qrc"/>
  </resources>

@@ -3,12 +3,20 @@
 
 #include <QGraphicsScene>
 
+#include "globalval.hpp"
+
 namespace Modules {
 class CIScene : public QGraphicsScene
 {
 public:
     CIScene();
     ~CIScene();
+
+protected:
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+
 };
 }
 

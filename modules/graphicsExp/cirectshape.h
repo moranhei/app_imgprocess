@@ -1,40 +1,31 @@
-﻿#ifndef CISHAPE_H
-#define CISHAPE_H
+﻿#ifndef CIRECTSHAPE_H
+#define CIRECTSHAPE_H
 
-#include <QLabel>
-#include <QPen>
 #include <QGraphicsItem>
-#include <QGraphicsSceneMouseEvent>
 
-#include "globalval.hpp"
+#include "cishape.h"
 
 namespace Modules {
-
-class CIShape : public QGraphicsItem
+class CIRectShape : public QGraphicsItem
 {
-//    Q_OBJECT
 public:
-    CIShape();
-    ~CIShape();
+    CIRectShape(const QPointF &pt1, const QPointF &pt2, const QPointF &pt3, const QPointF &pt4, const QColor &penColor, qreal penWidth);
 
 protected:
     //! 该函数对Item进行绘制，且是不断的循环执行的
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     //! 该函数在类的初始化时会被自动执行，其定义了Item所在的范围，该范围内会检测鼠标和按键的操作
     QRectF boundingRect() const;
-    void paintEvent(QPaintEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     void keyPressEvent(QKeyEvent *event);
-
+    int type() const;
 private:
-    void initViewer();
     EmDirection mouseDirection(const QPointF &point);
     void paintShape(const QPointF &point); //!< 形状绘制
     void scaleShape(const QPointF &mousePoint); //!< 形状缩放
     void moveShape(const QPointF &mousePoint); //!< 形状移动
-
 
     bool isPainterPressed; //!< 是否正在绘制
     bool isMovePressed; //!< 是否正在被移动
@@ -52,11 +43,6 @@ private:
     QPointF moveStartPoint;
     QRectF rectBase; //!< 矩形数据格式，通常的矩形，正方形，椭圆，圆均可以由该数据生成
 
-public:
-//    void setPen(QPen *inPen) {pen = inPen;}
-//    void setBrush(QPen *inBrush) {brush = inBrush;}
-//    void setFont(QPen *inFont) {font = inFont;}
-    void setShapeType(myShape inShapeType);
 };
 }
-#endif // CDRAWLABEL_H
+#endif // CIRECTSHAPE_H
