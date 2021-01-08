@@ -2,6 +2,7 @@
 #include($$(QTF_3RD_ROOT)/vision/opencv/opencv4_0.pri)
 
 HEADERS += \
+    $$PWD/cicircleshape.h \
     $$PWD/ciimageshape.h \
     $$PWD/cirectshape.h \
     $$PWD/cishape.h \
@@ -10,6 +11,7 @@ HEADERS += \
     $$PWD/globalval.hpp
 
 SOURCES += \
+    $$PWD/cicircleshape.cpp \
     $$PWD/ciimageshape.cpp \
     $$PWD/cirectshape.cpp \
     $$PWD/cishape.cpp \

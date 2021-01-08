@@ -297,3 +297,8 @@ void MainWindow::on_btnOval_clicked()
     scene->addItem(itemShape);
 //    ui->frame->setFocus();
 }
+
+void MainWindow::on_btnCircle_clicked()
+{
+    imageEditor->addCircleShape(QPointF(0, 0), 50, Qt::green, 4.0);
+}

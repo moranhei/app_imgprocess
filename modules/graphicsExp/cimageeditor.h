@@ -10,6 +10,7 @@
 #include "ciimageshape.h"
 #include "globalval.hpp"
 #include "cirectshape.h"
+#include "cicircleshape.h"
 
 namespace Modules {
 class CImageEditor : public QGraphicsView
@@ -38,7 +39,15 @@ public:
     void addRectShape(const QPointF &pt1 = QPointF(0, 0), const QPointF &pt2 = QPointF(100, 0),
                       const QPointF &pt3 = QPointF(100, 100), const QPointF &pt4 = QPointF(0, 100),
                       const QColor &penColor = Qt::green, qreal penWidth = 1.0);
-
+    /**
+     * @brief 绘制圆形编辑框
+     * @param cpt:[in]圆形
+     * @param r:[in]半径
+     * @param penColor:[in]画笔颜色
+     * @param penWidth:[in]画笔宽度
+     */
+    void addCircleShape(const QPointF &cpt = QPointF(50, 50), qreal r = 50,
+                        const QColor &penColor = Qt::green, qreal penWidth = 1.0);
 protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
@@ -49,10 +58,10 @@ private:
     CIScene *iScene;
     QPointF pointInItem;
     QRgb pixelValue;
-    CIRectShape *shapeSelected;
+    CIShape *shapeSelected;
     QImage inputImage;
     CIImageShape *imageShape;
-    QList<QGraphicsItem *> iShapeList; //!< 编辑框集合
+    QList<CIShape *> iShapeList; //!< 编辑框集合
     QList<qint32> idList; //!< 编辑框ID集合
 };
 }

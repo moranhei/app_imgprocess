@@ -62,9 +62,17 @@ void CImageEditor::fitImage()
 
 void CImageEditor::addRectShape(const QPointF &pt1, const QPointF &pt2, const QPointF &pt3, const QPointF &pt4, const QColor &penColor, qreal penWidth)
 {
-    shapeSelected = new CIRectShape(pt1, pt2, pt3, pt4, Qt::green, 1.0);
+    shapeSelected = new CIRectShape(pt1, pt2, pt3, pt4, penColor, penWidth);
     iShapeList.append(shapeSelected);
     idList.append(0);
+    iScene->addItem(shapeSelected);
+}
+
+void CImageEditor::addCircleShape(const QPointF &cpt, qreal r, const QColor &penColor, qreal penWidth)
+{
+    shapeSelected = new CICircleShape(cpt, r, penColor, penWidth);
+    iShapeList.append(shapeSelected);
+    idList.append(1);
     iScene->addItem(shapeSelected);
 }
 

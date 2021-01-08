@@ -91,6 +91,8 @@ private slots:
 
     void on_btnOval_clicked();
 
+    void on_btnCircle_clicked();
+
 signals:
     /**
      * @brief wheelEvent  针对鼠标滚轮的操作，即放大图像

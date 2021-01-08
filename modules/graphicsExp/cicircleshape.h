@@ -1,17 +1,14 @@
-﻿#ifndef CIRECTSHAPE_H
-#define CIRECTSHAPE_H
-
-#include <QGraphicsItem>
+﻿#ifndef CICIRCLESHAPE_H
+#define CICIRCLESHAPE_H
 
 #include "cishape.h"
 
 namespace Modules {
-class CIRectShape : public CIShape
+class CICircleShape : public CIShape
 {
 public:
-    CIRectShape(const QPointF &pt1 = QPointF(0, 0), const QPointF &pt2 = QPointF(100, 0), const QPointF &pt3 = QPointF(100, 100), const QPointF &pt4 = QPointF(0, 100),
-                const QColor &penColor = Qt::green, qreal penWidth = 1.0);
-
+    CICircleShape(const QPointF &cpt = QPointF(50, 50), qreal r = 50,
+                  const QColor &penColor = Qt::green, qreal penWidth = 1.0);
 protected:
     //! 该函数对Item进行绘制，且是不断的循环执行的
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -24,26 +21,19 @@ protected:
     int type() const;
 private:
     EmDirection mouseDirection(const QPointF &point);
-//    void paintShape(const QPointF &point); //!< 形状绘制
     void scaleShape(const QPointF &mousePoint); //!< 形状缩放
     void moveShape(const QPointF &mousePoint); //!< 形状移动
 
-//    bool isPainterPressed; //!< 是否正在绘制
     bool isMovePressed; //!< 是否正在被移动
     bool isScalePressed; //!< 是否正在缩放大小
-    //! 0:topLeft; 1:topMiddle; 2:topRight; 3:rightMiddlem; 4:bottomRight;
-    //! 5:bottomMiddle; 6:bottomLeft; 7:leftMiddle; 8:center;
-    QVector<QPoint> pointCoordinates = QVector<QPoint>(9, QPoint(0, 0)); //! 对任意形状按照顺时针定义了9个点位置
     EmDirection emCurDirection;
     myShape shapeType;
     QPen pen = QPen(Qt::green, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QBrush brush = QBrush(QColor(0, 165, 240, 120));
-//    QBrush brush = QBrush(QColor(0, 0, 200, 120));
     QFont font = QFont("Times", 10, QFont::Bold);
     QPointF paintStartPoint;
     QPointF moveStartPoint;
     QRectF rectBase; //!< 矩形数据格式，通常的矩形，正方形，椭圆，圆均可以由该数据生成
-
 };
 }
-#endif // CIRECTSHAPE_H
+#endif // CICIRCLESHAPE_H

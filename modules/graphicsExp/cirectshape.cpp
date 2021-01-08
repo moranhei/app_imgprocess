@@ -18,7 +18,7 @@ CIRectShape::CIRectShape(const QPointF &pt1, const QPointF &pt2, const QPointF &
 //    setFlag(QGraphicsItem::ItemIsSelectable);//必须加上这句，否则item无法获取到鼠标事件
 //    setFlag(ItemSendsGeometryChanges, true);
 //    setFlag(ItemSendsScenePositionChanges, true);
-    isPainterPressed = false;
+//    isPainterPressed = false;
     isMovePressed = false;
     isScalePressed = false;
     rectBase = QRect(0, 0, 0, 0);
@@ -87,7 +87,7 @@ void CIRectShape::mousePressEvent(QGraphicsSceneMouseEvent *event)
         } else if (dir == DIR_NONE) {
             //! 鼠标在图形外部
             this->setCursor(Qt::ArrowCursor);
-            isPainterPressed = true;
+//            isPainterPressed = true;
             paintStartPoint.setX(event->pos().x());
             paintStartPoint.setY(event->pos().y());
 
@@ -113,9 +113,10 @@ void CIRectShape::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if (event->buttons() & Qt::LeftButton) {
         //! 原来困扰我将近一个月的问题，居然是加上这一句程序就可以了，晕~~
         prepareGeometryChange();
-        if (isPainterPressed) {
-            paintShape(event->pos());
-        } else if (isMovePressed) {
+//        if (isPainterPressed) {
+//            paintShape(event->pos());
+//        } else
+        if (isMovePressed) {
             moveShape(event->pos());
         } else if (isScalePressed) {
             scaleShape(event->pos());
@@ -142,7 +143,7 @@ void CIRectShape::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
     paintStartPoint = QPoint();
     isMovePressed = false;
-    isPainterPressed = false;
+//    isPainterPressed = false;
     isScalePressed = false;
 }
 
@@ -220,26 +221,26 @@ EmDirection CIRectShape::mouseDirection(const QPointF &point)
     return dir;
 }
 
-void CIRectShape::paintShape(const QPointF &point)
-{
-    this->setCursor(Qt::ArrowCursor);
-    int width = point.x() - paintStartPoint.x(); //!< 相对于鼠标按下的起始点，当前鼠标移动的距离
-    int height = point.y() - paintStartPoint.y();
-    if (width < 0 && height < 0) {
-        rectBase.setX(point.x());
-        rectBase.setY(point.y());
-    } else if (width < 0) {
-        rectBase.setX(point.x());
-        rectBase.setY(paintStartPoint.y());
-    } else if (height < 0) {
-        rectBase.setX(paintStartPoint.x());
-        rectBase.setY(point.y());
-    } else {
-        rectBase.setX(paintStartPoint.x());
-        rectBase.setY(paintStartPoint.y());
-    }
-    rectBase.setSize(QSize(abs(width), abs(height)));
-}
+//void CIRectShape::paintShape(const QPointF &point)
+//{
+//    this->setCursor(Qt::ArrowCursor);
+//    int width = point.x() - paintStartPoint.x(); //!< 相对于鼠标按下的起始点，当前鼠标移动的距离
+//    int height = point.y() - paintStartPoint.y();
+//    if (width < 0 && height < 0) {
+//        rectBase.setX(point.x());
+//        rectBase.setY(point.y());
+//    } else if (width < 0) {
+//        rectBase.setX(point.x());
+//        rectBase.setY(paintStartPoint.y());
+//    } else if (height < 0) {
+//        rectBase.setX(paintStartPoint.x());
+//        rectBase.setY(point.y());
+//    } else {
+//        rectBase.setX(paintStartPoint.x());
+//        rectBase.setY(paintStartPoint.y());
+//    }
+//    rectBase.setSize(QSize(abs(width), abs(height)));
+//}
 
 void CIRectShape::scaleShape(const QPointF &mousePoint)
 {
