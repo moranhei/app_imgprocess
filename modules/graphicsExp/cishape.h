@@ -35,7 +35,6 @@ private:
     void scaleShape(const QPointF &mousePoint); //!< 形状缩放
     void moveShape(const QPointF &mousePoint); //!< 形状移动
 
-
     bool isPainterPressed; //!< 是否正在绘制
     bool isMovePressed; //!< 是否正在被移动
     bool isScalePressed; //!< 是否正在缩放大小
@@ -46,7 +45,6 @@ private:
     myShape shapeType;
     QPen pen = QPen(Qt::green, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QBrush brush = QBrush(QColor(0, 165, 240, 120));
-//    QBrush brush = QBrush(QColor(0, 0, 200, 120));
     QFont font = QFont("Times", 10, QFont::Bold);
     QPointF paintStartPoint;
     QPointF moveStartPoint;

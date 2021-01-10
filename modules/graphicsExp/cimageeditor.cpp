@@ -1,7 +1,7 @@
 ﻿#include <QDebug>
+#include <QPointer>
 
 #include "cimageeditor.h"
-
 
 using namespace Modules;
 
@@ -19,7 +19,15 @@ CImageEditor::CImageEditor()
     this->setSceneRect(QRectF(-this->width() / 2, -this->height() / 2, this->width(), this->height())); //!< 固定视图中场景大小，第一第二个参数为视图原点在场景坐标系中的位置
     this->setFocus(); //!< 将界面的焦点设置到当前view控件
     this->setViewportUpdateMode(QGraphicsView::FullViewportUpdate); //!< 避免Item在移动时发生拖影
-//    this->setInteractive(true);
+    //! 绘制方格背景
+    QPixmap pixmap(20, 20);
+    QPainter painter(&pixmap);
+    painter.fillRect(0, 0, 10, 10, QColor(45, 45, 45));
+    painter.fillRect(10, 10, 10, 10, QColor(45, 45, 45));
+    painter.fillRect(10, 0, 10, 10, QColor(60, 60, 60));
+    painter.fillRect(0, 10, 10, 10, QColor(60, 60, 60));
+    this->setBackgroundBrush(QBrush(pixmap));
+    //    this->setInteractive(true);
 }
 
 CImageEditor::~CImageEditor()
@@ -74,6 +82,66 @@ void CImageEditor::addCircleShape(const QPointF &cpt, qreal r, const QColor &pen
     iShapeList.append(shapeSelected);
     idList.append(1);
     iScene->addItem(shapeSelected);
+}
+
+void CImageEditor::addFeatureRect(const QPointF &pt1, const QPointF &pt2, const QColor &penColor, qreal penWidth)
+{
+    QVector<QPointF> pts;
+    pts.append(pt1);
+    pts.append(pt2);
+    featureSelected = new CIFeature(pts);
+    featureSelected->setShapeType(RectAngle);
+    featureSelected->setPenWidth(penWidth);
+    featureSelected->setPenColor(penColor);
+    iFeatureList.append(featureSelected);
+    iScene->addItem(featureSelected);
+}
+
+void CImageEditor::addFeatureCircle(const QPointF &cpt, qreal r, const QColor &penColor, qreal penWidth)
+{
+    QVector<QPointF> pts;
+    pts.append(QPointF(cpt.x() - r, cpt.y() - r));
+    pts.append(QPointF(cpt.x() + r, cpt.y() + r));
+    featureSelected = new CIFeature(pts);
+    featureSelected->setShapeType(Ellipse);
+    featureSelected->setPenWidth(penWidth);
+    featureSelected->setPenColor(penColor);
+    iFeatureList.append(featureSelected);
+    iScene->addItem(featureSelected);
+}
+
+void CImageEditor::addFeaturePoly(const QVector<QPointF> &pts, const QColor &penColor, qreal penWidth)
+{
+    featureSelected = new CIFeature(pts);
+    featureSelected->setShapeType(Polygon);
+    featureSelected->setPenWidth(penWidth);
+    featureSelected->setPenColor(penColor);
+    iFeatureList.append(featureSelected);
+    iScene->addItem(featureSelected);
+}
+
+void CImageEditor::addFeatureEllipse(const QPointF &pt1, const QPointF &pt2, const QColor &penColor, qreal penWidth)
+{
+    QVector<QPointF> pts;
+    pts.append(pt1);
+    pts.append(pt2);
+    featureSelected = new CIFeature(pts);
+    featureSelected->setShapeType(Ellipse);
+    featureSelected->setPenWidth(penWidth);
+    featureSelected->setPenColor(penColor);
+    iFeatureList.append(featureSelected);
+    iScene->addItem(featureSelected);
+}
+
+void CImageEditor::addFeatureText(const QString &str, const QPointF &pt, const QFont &font, const QColor &penColor, qreal penWidth)
+{
+    featureSelected = new CIFeature(str, pt);
+    featureSelected->setShapeType(Text);
+    featureSelected->setPenWidth(penWidth);
+    featureSelected->setPenColor(penColor);
+    featureSelected->setTextFont(font);
+    iFeatureList.append(featureSelected);
+    iScene->addItem(featureSelected);
 }
 
 void CImageEditor::mouseMoveEvent(QMouseEvent *event)

@@ -8,7 +8,8 @@ HEADERS += \
     $$PWD/cishape.h \
     $$PWD/cimageeditor.h \
     $$PWD/ciscene.h \
-    $$PWD/globalval.hpp
+    $$PWD/globalval.hpp \
+    $$PWD/cifeature.h
 
 SOURCES += \
     $$PWD/cicircleshape.cpp \
@@ -16,4 +17,5 @@ SOURCES += \
     $$PWD/cirectshape.cpp \
     $$PWD/cishape.cpp \
     $$PWD/cimageeditor.cpp \
-    $$PWD/ciscene.cpp
+    $$PWD/ciscene.cpp \
+    $$PWD/cifeature.cpp

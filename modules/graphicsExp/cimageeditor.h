@@ -7,6 +7,7 @@
 
 #include "ciscene.h"
 #include "cishape.h"
+#include "cifeature.h"
 #include "ciimageshape.h"
 #include "globalval.hpp"
 #include "cirectshape.h"
@@ -48,6 +49,57 @@ public:
      */
     void addCircleShape(const QPointF &cpt = QPointF(50, 50), qreal r = 50,
                         const QColor &penColor = Qt::green, qreal penWidth = 1.0);
+    /**
+     * @brief 添加矩形特征
+     * @param pt1:[in]矩形左上角点坐标，单位pixel
+     * @param pt2:[in]矩形右下角点坐标，单位pixel
+     * @param penColor:[in]画笔颜色
+     * @param penWidth:[in]画笔宽度
+     * @return 返回被添加的特征id
+     */
+    void addFeatureRect(const QPointF &pt1, const QPointF &pt2,
+                        const QColor &penColor = Qt::blue, qreal penWidth = 1.0);
+    /**
+     * @brief 添加圆特征
+     * @param cpt:[in]圆心坐标，单位pixel
+     * @param r:[in]圆半径，单位pixel
+     * @param penColor:[in]画笔颜色
+     * @param penWidth:[in]画笔宽度
+     * @return 返回被添加的特征id
+     */
+    void addFeatureCircle(const QPointF &cpt, qreal r,
+                          const QColor &penColor = Qt::blue, qreal penWidth = 1.0);
+    /**
+     * @brief 添加多边形特征(同理可用于绘制直线，矩形等)
+     * @param pts:[in]多边形按先后顺序各点坐标，单位pixel
+     * @param penColor:[in]画笔颜色
+     * @param penWidth:[in]画笔宽度
+     * @return 返回被添加的特征id
+     */
+    void addFeaturePoly(const QVector<QPointF> &pts, const QColor &penColor = Qt::blue,
+                        qreal penWidth = 1.0);
+    /**
+     * @brief 添加椭圆特征
+     * @param pt1:[in]椭圆外接矩形左上角点坐标，单位pixel
+     * @param pt2:[in]椭圆外接矩形右下角点坐标，单位pixel
+     * @param penColor:[in]画笔颜色
+     * @param penWidth:[in]画笔宽度
+     * @return 返回被添加的特征id
+     */
+    void addFeatureEllipse(const QPointF &pt1, const QPointF &pt2,
+                           const QColor &penColor = Qt::blue, qreal penWidth = 1.0);
+    /**
+     * @brief 添加文字
+     * @param str:[in]文字信息
+     * @param font:[in]文字字体
+     * @param pt:[in]文字显示的位置(视场中的位置）
+     * @param penColor:[in]画笔颜色
+     * @param penWidth:[in]画笔宽度
+     * @return 返回被添加的文字id
+     */
+    void addFeatureText(const QString &str,  const QPointF &pt = QPointF(0, 0),
+                        const QFont &font = QFont("Times", 10, QFont::Bold),
+                        const QColor &penColor = Qt::blue, qreal penWidth = 1.0);
 protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
@@ -56,13 +108,15 @@ protected:
 
 private:
     CIScene *iScene;
+    QImage inputImage;
+    CIImageShape *imageShape;
     QPointF pointInItem;
     QRgb pixelValue;
     CIShape *shapeSelected;
-    QImage inputImage;
-    CIImageShape *imageShape;
     QList<CIShape *> iShapeList; //!< 编辑框集合
     QList<qint32> idList; //!< 编辑框ID集合
+    CIFeature *featureSelected;
+    QList<CIFeature *> iFeatureList; //!< 编辑框集合
 };
 }
 #endif // CIMAGEEDITOR_H

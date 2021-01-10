@@ -11,7 +11,8 @@ typedef enum myShape {
     Ellipse,
     Circle,
     Polygon,
-    Image
+    Image,
+    Text
 };
 
 enum EmDirection {

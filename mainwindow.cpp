@@ -290,11 +290,22 @@ void MainWindow::on_btnRectangle_clicked()
 
 void MainWindow::on_btnOval_clicked()
 {
-    CIShape *itemShape = new CIShape;
-    itemShape->setShapeType(Ellipse);
-    itemShape->setAcceptDrops(true);
-    itemShape->setFlag(QGraphicsItem::ItemIsMovable);
-    scene->addItem(itemShape);
+    imageEditor->addFeatureRect(QPointF(50, 50), QPointF(150, 150), Qt::blue, 4.0);
+    imageEditor->addFeatureCircle(QPointF(0, 0), 50, Qt::black, 4.0);
+    imageEditor->addFeatureEllipse(QPointF(-50, -50), QPointF(150, 50), Qt::red, 4.0);
+    imageEditor->addFeatureText(u8"Benedace", QPointF(-200, -200));
+
+    QVector<QPointF> points;
+    points.append(QPointF(10.0, 80.0));
+    points.append(QPointF(20.0, 10.0));
+    points.append(QPointF(80.0, 30.0));
+    points.append(QPointF(90.0, 70.0));
+    imageEditor->addFeaturePoly(points, Qt::yellow, 4.0);
+    //    CIShape *itemShape = new CIShape;
+//    itemShape->setShapeType(Ellipse);
+//    itemShape->setAcceptDrops(true);
+//    itemShape->setFlag(QGraphicsItem::ItemIsMovable);
+//    scene->addItem(itemShape);
 //    ui->frame->setFocus();
 }
 
