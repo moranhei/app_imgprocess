@@ -4,10 +4,12 @@ include($$(QTF_3RD_ROOT)/vision/opencv/opencv4_0.pri)
 include(baseFunctions/baseFunctions.pri)
 
 HEADERS += \
+    $$PWD/cgray.h \
     $$PWD/ialgorithm.h \
     $$PWD/cgemo.h
     $$PWD/cerror.h
 
 SOURCES += \
+    $$PWD/cgray.cpp \
     $$PWD/ialgorithm.cpp \
     $$PWD/cgemo.cpp

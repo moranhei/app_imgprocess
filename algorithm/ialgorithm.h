@@ -12,7 +12,7 @@ namespace Algorithm{
 using namespace cv;
 
 /*!
- * \brief 基础算法类
+ * \brief The IAlgorithm class
  * 所有算法函数开始必须检测形参是否可用，是否在范围以内
  * 所有算法函数必须以int返回，0 表示OK，其余为NG，宏定义在error.h文件
  * 函数命名需按照驼峰命名法

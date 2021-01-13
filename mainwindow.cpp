@@ -49,6 +49,9 @@ void MainWindow::init()
     qImageFile.fill(qRgb(255, 255, 255));
     imageEditor->updateImage(qImageFile);
     imageEditor->fitImage();
+
+//    QImage src = Algorithm::CGemo::resize(imageEditor->getImage(), 200, 200);
+//    imageEditor->updateImage(src);
 }
 
 void MainWindow::on_actionNew_triggered()
@@ -95,8 +98,8 @@ void MainWindow::on_actionOpen_triggered()
         imageEditor->updateImage(qImageFile);
         imageEditor->fitImage();
 
-//        QImage src = Algorithm::CGemo::resize(imageEditor->getImage(), 200, 200);
-//        imageEditor->updateImage(src);
+        QImage src = Algorithm::CGemo::crop(imageEditor->getImage(), 100, 100, 150, 150);
+        imageEditor->updateImage(src);
 //        qDebug() << u8"item数目:" << scene->selectedItems().count();
     }
 }
