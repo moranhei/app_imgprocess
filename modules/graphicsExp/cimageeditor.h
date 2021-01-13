@@ -29,6 +29,11 @@ public:
      */
     void fitImage();
     /**
+     * @brief 获取绘图区当前图像
+     * @return 绘图区当前图像
+     */
+    QImage getImage() const;
+    /**
      * @brief 绘制矩形编辑框
      * @param pt1:[in]矩形左上角点坐标
      * @param pt2:[in]矩形右上角点坐标

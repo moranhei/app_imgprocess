@@ -4,7 +4,7 @@
 #include <QString>
 
 namespace Algorithm{  namespace BaseFunctions {
-/**
+    /**
      * @brief showMessage  显示程序运行相关错误信息
      * @param message  输入信息
      */

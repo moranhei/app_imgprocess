@@ -68,6 +68,11 @@ void CImageEditor::fitImage()
     imageShape->setPos(0, 0);
 }
 
+QImage CImageEditor::getImage() const
+{
+    return inputImage;
+}
+
 void CImageEditor::addRectShape(const QPointF &pt1, const QPointF &pt2, const QPointF &pt3, const QPointF &pt4, const QColor &penColor, qreal penWidth)
 {
     shapeSelected = new CIRectShape(pt1, pt2, pt3, pt4, penColor, penWidth);

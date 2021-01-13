@@ -1,12 +1,13 @@
-# 当前algorithm用于添加各种算法检测模块
+# 当前algorithm名称空间用于添加各种基础检测算法
 
 include($$(QTF_3RD_ROOT)/vision/opencv/opencv4_0.pri)
 include(baseFunctions/baseFunctions.pri)
 
 HEADERS += \
-#    $$PWD/error.h \
-#    $$PWD/ialgorithm.h
+    $$PWD/ialgorithm.h \
+    $$PWD/cgemo.h
     $$PWD/cerror.h
 
 SOURCES += \
-#    $$PWD/ialgorithm.cpp
+    $$PWD/ialgorithm.cpp \
+    $$PWD/cgemo.cpp
