@@ -2,14 +2,16 @@
 #define IALGORITHM_H
 
 #include <QImage>
-#include <opencv2/opencv.hpp>
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/opencv.hpp"
+#include <opencv2/core/core.hpp>
+#include <opencv2/imgproc/types_c.h>
+
 #include "error.h"
 
 
 
 namespace Algorithm{
-
-using namespace cv;
 
 /*!
  * \brief The IAlgorithm class
@@ -36,13 +38,13 @@ public:
      * @param 输入图像
      * @return
      */
-    static QImage mat2QImage(Mat src);
+    static QImage mat2QImage(cv::Mat src);
     /**
      * @brief QImage格式图像转化为Mat
      * @param s输入图像
      * @return
      */
-    static Mat qImage2Mat(QImage src);
+    static cv::Mat qImage2Mat(QImage src);
 };
 }
 

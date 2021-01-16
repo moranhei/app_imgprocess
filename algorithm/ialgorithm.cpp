@@ -19,7 +19,7 @@ void IAlgorithm::showInfoMessage(QString msg)
 
 }
 
-QImage IAlgorithm::mat2QImage(Mat src)
+QImage IAlgorithm::mat2QImage(cv::Mat src)
 {
     if (src.type() == CV_8UC1) {
         QImage image(src.cols, src.rows, QImage::Format_Indexed8);
@@ -36,21 +36,20 @@ QImage IAlgorithm::mat2QImage(Mat src)
         return image;
     } else if (src.type() == CV_8UC3) {
         const uchar *pSrc = (const uchar *)src.data;
-        QImage image(pSrc, src.cols, src.rows, src.step, QImage::Format_RGB888);
+        QImage image(pSrc, src.cols, src.rows, static_cast<int>(src.step), QImage::Format_RGB888);
         return image.rgbSwapped();
     } else if (src.type() == CV_8UC4) {
         const uchar *pSrc = (const uchar *)src.data;
-        QImage image(pSrc, src.cols, src.rows, src.step, QImage::Format_ARGB32);
+        QImage image(pSrc, src.cols, src.rows, static_cast<int>(src.step), QImage::Format_ARGB32);
         return image.copy();
     } else {
         return QImage();
     }
 }
 
-Mat IAlgorithm::qImage2Mat(QImage src)
+cv::Mat IAlgorithm::qImage2Mat(QImage src)
 {
-    using namespace cv;
-    Mat dst;
+    cv::Mat dst;
     switch (src.format()) {
     //! 前三种图像格式均使用同一种转换函数（8位深度4通道）
     case QImage::Format_ARGB32:
@@ -60,7 +59,7 @@ Mat IAlgorithm::qImage2Mat(QImage src)
         break;
     case QImage::Format_RGB888:
         dst = cv::Mat(src.height(), src.width(), CV_8UC3, (void *)src.constBits(), src.bytesPerLine());
-        cv::cvtColor(dst, dst, COLOR_BGR2RGB);
+        cv::cvtColor(dst, dst, cv::COLOR_BGR2RGB);
         break;
     case QImage::Format_Indexed8:
     case QImage::Format_Grayscale8:

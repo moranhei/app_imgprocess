@@ -8,6 +8,7 @@ namespace Algorithm {
 
 /**
  * @brief 当前类实现图像的几何变换
+ * 继承自基类，则继承了基类的所有成员函数
  */
 class CGemo : public IAlgorithm
 {

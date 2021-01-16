@@ -3,7 +3,7 @@
 
 namespace Modules {
 
-typedef enum myShape {
+enum myShape {
     Pen,
     Line,
     RectAngle,

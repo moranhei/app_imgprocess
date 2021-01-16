@@ -9,8 +9,8 @@ CGemo::CGemo()
 
 QImage CGemo::resize(QImage src, qint32 width, qint32 height)
 {
-    Mat matDst;
-    cv::resize(qImage2Mat(src), matDst, Size(width, height), 0, 0, INTER_LINEAR);
+    cv::Mat matDst;
+    cv::resize(qImage2Mat(src), matDst, cv::Size(width, height), 0, 0, cv::INTER_LINEAR);
     return mat2QImage(matDst);
 }
 

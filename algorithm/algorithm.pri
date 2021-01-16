@@ -6,10 +6,12 @@ include(baseFunctions/baseFunctions.pri)
 HEADERS += \
     $$PWD/cgray.h \
     $$PWD/ialgorithm.h \
-    $$PWD/cgemo.h
+    $$PWD/cgemo.h \
+    $$PWD/cenhance.h
     $$PWD/cerror.h
 
 SOURCES += \
     $$PWD/cgray.cpp \
     $$PWD/ialgorithm.cpp \
-    $$PWD/cgemo.cpp
+    $$PWD/cgemo.cpp \
+    $$PWD/cenhance.cpp

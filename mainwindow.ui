@@ -155,17 +155,6 @@
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="btnSquare">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="app_imgprocess.qrc">
-              <normaloff>:/Image/toolbox/Square.png</normaloff>:/Image/toolbox/Square.png</iconset>
-            </property>
-           </widget>
-          </item>
          </layout>
         </item>
         <item>
@@ -479,11 +468,19 @@
    </property>
   </action>
   <action name="actionBack">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/edit/last_File.png</normaloff>:/Image/edit/last_File.png</iconset>
+   </property>
    <property name="text">
     <string> 上一张</string>
    </property>
   </action>
   <action name="actionNext">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/edit/next_File.png</normaloff>:/Image/edit/next_File.png</iconset>
+   </property>
    <property name="text">
     <string> 下一张</string>
    </property>

@@ -9,6 +9,8 @@
 #include <QKeyEvent>
 
 #include "algorithm/cgemo.h"
+#include "algorithm/cgray.h"
+#include "algorithm/cenhance.h"
 #include "algorithm/ialgorithm.h"
 
 using namespace Modules;
@@ -98,8 +100,12 @@ void MainWindow::on_actionOpen_triggered()
         imageEditor->updateImage(qImageFile);
         imageEditor->fitImage();
 
-        QImage src = Algorithm::CGemo::crop(imageEditor->getImage(), 100, 100, 150, 150);
+//        QImage src = Algorithm::CGray::gray(imageEditor->getImage());
+        QImage src = Algorithm::CEnhance::median(imageEditor->getImage(), 5);
         imageEditor->updateImage(src);
+
+//        QImage src = Algorithm::CGemo::crop(imageEditor->getImage(), 100, 100, 150, 150);
+//        imageEditor->updateImage(src);
 //        qDebug() << u8"item数目:" << scene->selectedItems().count();
     }
 }

@@ -51,5 +51,7 @@
         <file>Image/toolbox/Triangle.png</file>
         <file>Image/view/Check.png</file>
         <file>Image/icon/app_imgprocess.png</file>
+        <file>Image/edit/last_File.png</file>
+        <file>Image/edit/next_File.png</file>
     </qresource>
 </RCC>
