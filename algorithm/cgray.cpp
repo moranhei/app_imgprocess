@@ -46,9 +46,9 @@ QImage CGray::scaleImage(QImage src, qreal mult, qreal add)
     cv::Mat matDst;
     //! 矩阵变换:  matSrc * mult + add = matDst;参数为负数表示源和目标矩阵通道数相同
     matSrc.convertTo(matDst, -1, mult, add);
-    //! 将图像像素值映射到[0, 255]
+    //! 将图像像素值映射到[0, 255]范围
     cv::normalize(matDst, matDst, 0, 255, cv::NORM_MINMAX);
-    //! 对图像像素值做线性变换，返回值为整型
+    //! 对图像像素值做线性变换，返回值为整型，即会将数据转换为uint8类型，实际上即[0-255]的范围
     cv::convertScaleAbs(matDst, matDst);
     return mat2QImage(matDst);
 }

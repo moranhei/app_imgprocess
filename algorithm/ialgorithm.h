@@ -2,11 +2,12 @@
 #define IALGORITHM_H
 
 #include <QImage>
+#include <assert.h>
+
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/opencv.hpp"
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/types_c.h>
-
 #include "error.h"
 
 

@@ -7,11 +7,13 @@ HEADERS += \
     $$PWD/cgray.h \
     $$PWD/ialgorithm.h \
     $$PWD/cgemo.h \
-    $$PWD/cenhance.h
+    $$PWD/cenhance.h \
+    $$PWD/cmorp.h
     $$PWD/cerror.h
 
 SOURCES += \
     $$PWD/cgray.cpp \
     $$PWD/ialgorithm.cpp \
     $$PWD/cgemo.cpp \
-    $$PWD/cenhance.cpp
+    $$PWD/cenhance.cpp \
+    $$PWD/cmorp.cpp

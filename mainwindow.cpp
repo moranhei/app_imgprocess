@@ -11,6 +11,7 @@
 #include "algorithm/cgemo.h"
 #include "algorithm/cgray.h"
 #include "algorithm/cenhance.h"
+#include "algorithm/cmorp.h"
 #include "algorithm/ialgorithm.h"
 
 using namespace Modules;
@@ -101,8 +102,10 @@ void MainWindow::on_actionOpen_triggered()
         imageEditor->fitImage();
 
 //        QImage src = Algorithm::CGray::gray(imageEditor->getImage());
-        QImage src = Algorithm::CEnhance::median(imageEditor->getImage(), 5);
+//        QImage src = Algorithm::CEnhance::canny(imageEditor->getImage(), 3,30);
+        QImage src = Algorithm::CMorp::gradient(imageEditor->getImage(), 0, 2, 2);
         imageEditor->updateImage(src);
+        imageEditor->fitImage();
 
 //        QImage src = Algorithm::CGemo::crop(imageEditor->getImage(), 100, 100, 150, 150);
 //        imageEditor->updateImage(src);
