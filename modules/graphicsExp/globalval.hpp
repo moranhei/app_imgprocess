@@ -1,7 +1,7 @@
 ﻿#ifndef GLOBALVAL_HPP
 #define GLOBALVAL_HPP
 
-namespace Modules {
+namespace GraphicsExp {
 
 enum myShape {
     Pen,
@@ -11,6 +11,7 @@ enum myShape {
     Ellipse,
     Circle,
     Polygon,
+    Points,
     Image,
     Text
 };

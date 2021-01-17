@@ -4,7 +4,7 @@
 #include <QPainter>
 #include <QKeyEvent>
 
-using namespace Modules;
+using namespace GraphicsExp;
 
 CIRectShape::CIRectShape(const QPointF &pt1, const QPointF &pt2, const QPointF &pt3, const QPointF &pt4, const QColor &penColor, qreal penWidth)
 {

@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <QDebug>
 
-using namespace Modules;
+using namespace GraphicsExp;
 
 CIShape::CIShape() : QGraphicsItem()
 {

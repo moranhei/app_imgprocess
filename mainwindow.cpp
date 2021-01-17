@@ -14,7 +14,7 @@
 #include "algorithm/cmorp.h"
 #include "algorithm/ialgorithm.h"
 
-using namespace Modules;
+using namespace GraphicsExp;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -30,9 +30,26 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    QString mesg = u8"确定关闭该软件吗?";
+    QMessageBox *msgBox = new QMessageBox(QMessageBox::Warning, u8"警告:", mesg, QMessageBox::Ok | QMessageBox::Cancel);
+    msgBox->setDefaultButton(QMessageBox::Cancel);
+    msgBox->setButtonText (QMessageBox::Ok, QString(u8"确 定"));
+    msgBox->setButtonText (QMessageBox::Cancel, QString(u8"取 消"));
+    int rb = msgBox->exec();
+    if (rb == QMessageBox::Ok) {
+        event->accept(); //!< 窗口接受关闭信号，并关闭当前mainwindow窗口
+        QCoreApplication::exit(); //!< 上述通常只能删除对应的窗口，但是一个程序通常会有几个窗口，该语句为终止应用程序会关闭所有窗口
+    } else if (rb == QMessageBox::Cancel)
+        event->ignore();
+    delete msgBox;
+}
+
 void MainWindow::init()
 {
     setWindowTitle("ImageK");
+//    setAttribute(Qt::WA_DeleteOnClose, false); //!< 若为true则删除当前部件，若为false则只隐藏不删除
     //! 用于显示像素位置和值
     lbPixelPosition = new QLabel();
     lbPixelVaule = new QLabel();
@@ -193,6 +210,7 @@ void MainWindow::on_keyPress(QKeyEvent *event)
 
 void MainWindow::on_actionExit_triggered()
 {
+    //! 当执行QWidget::close函数时,首先向部件发送QCloseEvent事件(不管部件是否可见)，然后判断部件是否接受QCloseEvent事件；最后执行该事件
     close();
 }
 
@@ -318,6 +336,13 @@ void MainWindow::on_btnOval_clicked()
     points.append(QPointF(80.0, 30.0));
     points.append(QPointF(90.0, 70.0));
     imageEditor->addFeaturePoly(points, Qt::yellow, 4.0);
+
+    QVector<QPointF> points2;
+    points2.append(QPointF(20.0, 90.0));
+    points2.append(QPointF(30.0, 20.0));
+    points2.append(QPointF(90.0, 40.0));
+    points2.append(QPointF(100.0, 80.0));
+    imageEditor->addFeaturePts(points2, Qt::red, 5.0);
     //    CIShape *itemShape = new CIShape;
 //    itemShape->setShapeType(Ellipse);
 //    itemShape->setAcceptDrops(true);
@@ -329,4 +354,57 @@ void MainWindow::on_btnOval_clicked()
 void MainWindow::on_btnCircle_clicked()
 {
     imageEditor->addCircleShape(QPointF(0, 0), 50, Qt::green, 4.0);
+}
+void MainWindow::on_segmentAssistant_triggered()
+{
+    segmentWidget = new Assistant::CSegment();
+    segmentWidget->setImage(imageEditor->getImage());
+    segmentWidget->show();
+
+    //! ==直接新建并构建界面== //
+//    //! 在QDialog或者QWidget中添加菜单按钮的过程是：
+//    //! 现在dialog或widget中添加QMenuBar(菜单栏)；然后在QMenuBar中添加QMenu(菜单)，最后在QMenu中添加QAction(动作)即按键
+//    //! 对应的对象需要new出来，各对象的父节点(QWidget *parent = nullptr)要选择正确，或者保持默认即不选
+//    QWidget *segmentWidget = new QWidget();
+//    segmentWidget->setWindowTitle(u8"阈值分割");
+//    segmentWidget->setWindowIcon(QIcon(":/Image/assistant/Segment.png"));
+
+//    QMenuBar *menuBar = new QMenuBar();
+//    QMenu *fileMenu = new QMenu(u8"文件(&F)");
+//    menuBar->addMenu(fileMenu);
+
+//    QAction *openImageAct = new QAction(QIcon(":/Image/file/Open.png"), u8"打开(&O)");
+//    fileMenu->addAction(openImageAct);
+//    connect(openImageAct, SIGNAL(triggered()), this, SLOT(openImageSeg()));
+
+//    //!　使用QHBoxLayout和QVBoxLayout的布局方式，不如QGridLayout布局，尤其是当控件较多时
+//    QHBoxLayout *layoutLowGray = new QHBoxLayout(); //!< 水平布局
+//    QLabel *labLowGray = new QLabel(u8"低阈值:");
+//    labLowGray->setAlignment(Qt::AlignLeft);
+//    QSlider *sliderLowGray= new QSlider(Qt::Horizontal);		// 滑动条
+//    sliderLowGray->setRange(0, 255);
+//    sliderLowGray->setValue(20);
+//    connect(sliderLowGray, SIGNAL(valueChanged(int)), this, SLOT(imageProcess(int)));
+//    layoutLowGray->addWidget(labLowGray);
+//    layoutLowGray->addWidget(sliderLowGray);
+
+//    QHBoxLayout *layoutHighGray = new QHBoxLayout(); //!< 水平布局
+//    QLabel *labHighGray = new QLabel(u8"高阈值:");
+//    labHighGray->setAlignment(Qt::AlignLeft);
+//    QSlider *sliderHighGray= new QSlider(Qt::Horizontal);		// 滑动条
+//    sliderHighGray->setRange(0, 255);
+//    sliderHighGray->setValue(200);
+//    layoutHighGray->addWidget(labHighGray);
+//    layoutHighGray->addWidget(sliderHighGray);
+
+////    QVBoxLayout *layout = new QVBoxLayout(segmentWidget); //!< 垂直布局
+//    QVBoxLayout *layout = new QVBoxLayout(); //!< 下述两语句与上面语句作用相同
+//    segmentWidget->setLayout(layout);
+//    imageEditor = new CImageEditor;
+//    layout->addWidget(menuBar);
+//    layout->addWidget(imageEditor);
+//    layout->addLayout(layoutLowGray);
+//    layout->addLayout(layoutHighGray);
+//    segmentWidget->show();
+    //! ==== //
 }

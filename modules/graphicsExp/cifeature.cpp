@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <QDebug>
 
-using namespace Modules;
+using namespace GraphicsExp;
 
 CIFeature::CIFeature(const QVector<QPointF> &pts)
 {
@@ -39,6 +39,9 @@ void CIFeature::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         painter->drawText(textCenter,textString);
     case Image:
 //        painter->drawPixmap(&QPixmap::fromImage(qImg));
+        break;
+    case Points:
+        painter->drawPoints(QPolygonF(points));
         break;
     default:
         break;

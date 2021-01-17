@@ -3,9 +3,9 @@
 
 #include "cimageeditor.h"
 
-using namespace Modules;
+using namespace GraphicsExp;
 
-CImageEditor::CImageEditor()
+CImageEditor::CImageEditor(QWidget *parent) : QGraphicsView(parent)
 {
     iScene = new CIScene();
 //    iScene->setSceneRect(QRectF(-400, -400, 800, 800));
@@ -149,11 +149,21 @@ void CImageEditor::addFeatureText(const QString &str, const QPointF &pt, const Q
     iScene->addItem(featureSelected);
 }
 
+void CImageEditor::addFeaturePts(const QVector<QPointF> &pts, const QColor &penColor, qreal penWidth, bool isAimPoint)
+{
+    featureSelected = new CIFeature(pts);
+    featureSelected->setShapeType(Points);
+    featureSelected->setPenWidth(penWidth);
+    featureSelected->setPenColor(penColor);
+    iFeatureList.append(featureSelected);
+    iScene->addItem(featureSelected);
+}
+
 void CImageEditor::mouseMoveEvent(QMouseEvent *event)
 {
     QPointF pointScene = mapToScene(event->pos());
     if (inputImage.isNull()) {
-        qCritical() << u8"界面图像为空!";
+//        qCritical() << u8"界面图像为空!";
         return; //! 没有选中的绘图项，或选中的多于1个
     }
     pointInItem = imageShape->mapFromScene(pointScene);

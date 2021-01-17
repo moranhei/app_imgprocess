@@ -4,7 +4,7 @@
 #include <QPainter>
 #include <QKeyEvent>
 
-using namespace Modules;
+using namespace GraphicsExp;
 
 CICircleShape::CICircleShape(const QPointF &cpt, qreal r, const QColor &penColor, qreal penWidth)
 {

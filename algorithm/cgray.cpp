@@ -35,8 +35,8 @@ QImage CGray::threshold(QImage src, qint32 minGray, qint32 maxGray)
     cv::Mat matDst;
     if (matSrc.channels() != 1)
         cv::cvtColor(matSrc, matSrc, CV_BGR2GRAY);
-    cv::threshold(matSrc, matSrc, maxGray, 255, cv::THRESH_TOZERO_INV);
-    cv::threshold(matSrc, matDst, minGray, 255, cv::THRESH_BINARY);
+    cv::threshold(matSrc, matDst, maxGray, 255, cv::THRESH_TOZERO_INV);
+    cv::threshold(matDst, matDst, minGray, 255, cv::THRESH_BINARY);
     return mat2QImage(matDst);
 }
 

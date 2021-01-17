@@ -5,7 +5,7 @@
 #include "cishape.h"
 #include "globalval.hpp"
 
-namespace Modules {
+namespace GraphicsExp {
 class CIImageShape : public CIShape
 {
 public:

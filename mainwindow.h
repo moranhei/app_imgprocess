@@ -5,11 +5,16 @@
 #include <QGraphicsView>
 #include <QGraphicsPixmapItem>
 #include <QLabel>
-#include <qimggraphicsitem.h>
+#include <QtGui>
+#include <QtWidgets>
+#include <QMenuBar>
+#include <QMenu>
 
+#include "qimggraphicsitem.h"
 #include "algorithm/cerror.h"
 #include "modules/graphicsExp/cishape.h"
 #include "modules/graphicsExp/cimageeditor.h"
+#include "modules/assistant/csegment.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,6 +27,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void closeEvent(QCloseEvent *event);
 
 private slots:
     /**
@@ -40,7 +46,9 @@ private slots:
      * @brief on_actionSaveAs_triggered  文件另存为
      */
     void on_actionSaveAs_triggered();
+
     void on_mouseMovePoint(QPoint point); //!< 鼠标移动
+
     void on_keyPress(QKeyEvent *enent);
     /**
      * @brief on_actionExit_triggered  退出软件
@@ -93,6 +101,8 @@ private slots:
 
     void on_btnCircle_clicked();
 
+    void on_segmentAssistant_triggered();
+
 signals:
     /**
      * @brief wheelEvent  针对鼠标滚轮的操作，即放大图像
@@ -106,7 +116,8 @@ private:
     QLabel *lbPixelPosition;
     QLabel *lbPixelVaule;
     QImgGraphicsItem *itemPixmap;
-    Modules::CImageEditor *imageEditor;
+    GraphicsExp::CImageEditor *imageEditor;
+    Assistant::CSegment *segmentWidget = nullptr;
     /**
      * @brief init  窗口启动时初始化相关操作
      */

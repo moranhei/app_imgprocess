@@ -13,11 +13,11 @@
 #include "cirectshape.h"
 #include "cicircleshape.h"
 
-namespace Modules {
+namespace GraphicsExp {
 class CImageEditor : public QGraphicsView
 {
 public:
-    CImageEditor();
+    CImageEditor(QWidget *parent = 0);
     ~CImageEditor();
     /**
      * @brief 加载图像
@@ -100,11 +100,21 @@ public:
      * @param pt:[in]文字显示的位置(视场中的位置）
      * @param penColor:[in]画笔颜色
      * @param penWidth:[in]画笔宽度
-     * @return 返回被添加的文字id
+     * @return
      */
     void addFeatureText(const QString &str,  const QPointF &pt = QPointF(0, 0),
                         const QFont &font = QFont("Times", 10, QFont::Bold),
                         const QColor &penColor = Qt::blue, qreal penWidth = 1.0);
+    /**
+     * @brief 添加点云特征
+     * @param pts:[in]被添加的点云，单位pixel
+     * @param penColor:[in]画笔颜色
+     * @param penWidth:[in]画笔宽度
+     * @param isAimPoint:[in]是否瞄准点, true:按照瞄准点形状绘制; false:按照普通点形状绘制
+     * @return
+     */
+    void addFeaturePts(const QVector<QPointF> &pts, const QColor &penColor = Qt::blue,
+                         qreal penWidth = 1.0, bool isAimPoint = false);
 protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);

@@ -8,7 +8,7 @@
 #include <QKeyEvent>
 #include <QDebug>
 
-using namespace Modules;
+using namespace GraphicsExp;
 
 CIImageShape::CIImageShape(QPixmap *pixMap)
 {

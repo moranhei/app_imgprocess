@@ -5,7 +5,7 @@
 
 #include "cishape.h"
 
-namespace Modules {
+namespace GraphicsExp {
 class CIRectShape : public CIShape
 {
 public:

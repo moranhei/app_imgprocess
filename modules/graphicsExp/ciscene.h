@@ -5,7 +5,7 @@
 
 #include "globalval.hpp"
 
-namespace Modules {
+namespace GraphicsExp {
 class CIScene : public QGraphicsScene
 {
 public:

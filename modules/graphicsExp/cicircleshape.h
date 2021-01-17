@@ -3,7 +3,7 @@
 
 #include "cishape.h"
 
-namespace Modules {
+namespace GraphicsExp {
 class CICircleShape : public CIShape
 {
 public:

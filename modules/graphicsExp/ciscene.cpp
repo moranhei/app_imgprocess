@@ -4,7 +4,7 @@
 #include <QGraphicsItem>
 #include <QDebug>
 
-using namespace Modules;
+using namespace GraphicsExp;
 
 CIScene::CIScene()
 {

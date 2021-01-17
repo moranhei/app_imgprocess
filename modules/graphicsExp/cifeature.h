@@ -8,7 +8,7 @@
 
 #include "globalval.hpp"
 
-namespace Modules {
+namespace GraphicsExp {
 
 class CIFeature : public QGraphicsItem
 {

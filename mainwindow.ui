@@ -33,7 +33,7 @@
        <enum>QTabWidget::West</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_1">
        <attribute name="title">
@@ -244,7 +244,7 @@
      <x>0</x>
      <y>0</y>
      <width>905</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -286,9 +286,18 @@
     <addaction name="actionFlipLeftRight"/>
     <addaction name="actionFlipUpDown"/>
    </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>助手(&amp;A)</string>
+    </property>
+    <addaction name="segmentAssistant"/>
+    <addaction name="matchingAssistant"/>
+    <addaction name="measureAssistant"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -483,6 +492,25 @@
    </property>
    <property name="text">
     <string> 下一张</string>
+   </property>
+  </action>
+  <action name="segmentAssistant">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/assistant/Segment.png</normaloff>:/Image/assistant/Segment.png</iconset>
+   </property>
+   <property name="text">
+    <string>阈值分割</string>
+   </property>
+  </action>
+  <action name="matchingAssistant">
+   <property name="text">
+    <string>模板匹配</string>
+   </property>
+  </action>
+  <action name="measureAssistant">
+   <property name="text">
+    <string>尺寸测量</string>
    </property>
   </action>
  </widget>
