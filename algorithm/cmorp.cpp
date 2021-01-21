@@ -1,5 +1,7 @@
 ﻿#include "cmorp.h"
 
+#include <QMessageBox>
+
 using namespace Algorithm;
 
 CMorp::CMorp()
@@ -9,10 +11,14 @@ CMorp::CMorp()
 
 QImage CMorp::erode(QImage src, qint32 elem, qint32 kernel, int times)
 {
+    if(kernel<0){
+        QMessageBox::warning(nullptr, u8"图像腐蚀错误", QString(__FILE__) + QString::number(__LINE__) );
+        std::abort();
+    }
     cv::Mat matSrc = qImage2Mat(src);
     cv::Mat matDst;
     int elemType = 0;
-    if (elem == 0 )
+    if (elem == 0)
         elemType = cv::MORPH_RECT;
     else if (elem == 1)
         elemType = cv::MORPH_CROSS;

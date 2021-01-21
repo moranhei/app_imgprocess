@@ -120,7 +120,7 @@ void MainWindow::on_actionOpen_triggered()
 
 //        QImage src = Algorithm::CGray::gray(imageEditor->getImage());
 //        QImage src = Algorithm::CEnhance::canny(imageEditor->getImage(), 3,30);
-        QImage src = Algorithm::CMorp::gradient(imageEditor->getImage(), 0, 2, 2);
+        QImage src = Algorithm::CMorp::erode(imageEditor->getImage(),0, 3, 1);
         imageEditor->updateImage(src);
         imageEditor->fitImage();
 
