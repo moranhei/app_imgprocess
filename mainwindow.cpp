@@ -111,7 +111,8 @@ void MainWindow::on_actionOpen_triggered()
         return;
     } else {
         if (!qImageFile.load(imgName)) {
-            qCritical() << u8"错误代码:" << ERR_IMAGE_IS_EMPTY;
+            Utils::CError(-1, u8"图像加载失败!");
+//            qCritical() << u8"错误代码:" << ERR_IMAGE_IS_EMPTY;
             return;
         }
 
@@ -120,7 +121,7 @@ void MainWindow::on_actionOpen_triggered()
 
 //        QImage src = Algorithm::CGray::gray(imageEditor->getImage());
 //        QImage src = Algorithm::CEnhance::canny(imageEditor->getImage(), 3,30);
-        QImage src = Algorithm::CMorp::erode(imageEditor->getImage(),0, 3, 1);
+        QImage src = Algorithm::CMorp::erode(imageEditor->getImage(), 0, 3, 1);
         imageEditor->updateImage(src);
         imageEditor->fitImage();
 
@@ -407,4 +408,17 @@ void MainWindow::on_segmentAssistant_triggered()
 //    layout->addLayout(layoutHighGray);
 //    segmentWidget->show();
     //! ==== //
+}
+
+void MainWindow::on_matchingAssistant_triggered()
+{
+    matchingWidget = new Assistant::CMatching();
+    matchingWidget->show();
+}
+
+void MainWindow::on_measureAssistant_triggered()
+{
+    measurementWidget = new Assistant::CMeasurement();
+    measurementWidget->setImage(imageEditor->getImage());
+    measurementWidget->show();
 }

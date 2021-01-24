@@ -54,5 +54,8 @@
         <file>Image/edit/last_File.png</file>
         <file>Image/edit/next_File.png</file>
         <file>Image/assistant/Segment.png</file>
+        <file>Image/assistant/Matching.png</file>
+        <file>Image/assistant/Measurement.png</file>
+        <file>Image/assistant/Process.png</file>
     </qresource>
 </RCC>

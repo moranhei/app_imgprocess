@@ -22,7 +22,7 @@ CSegment::CSegment(QWidget *parent) : QWidget(parent)
     QHBoxLayout *layoutLowGray = new QHBoxLayout(); //!< 水平布局
     labLowGray = new QLabel(u8"低阈值:");
     labLowGray->setAlignment(Qt::AlignLeft);
-    sliderLowGray = new QSlider(Qt::Horizontal);    // 滑动条
+    sliderLowGray = new QSlider(Qt::Horizontal);    //! 滑动条
     sliderLowGray->setRange(0, 255);
     sliderLowGray->setValue(20);
     connect(sliderLowGray, SIGNAL(sliderReleased()), this, SLOT(imageProcess()));
@@ -32,7 +32,7 @@ CSegment::CSegment(QWidget *parent) : QWidget(parent)
     QHBoxLayout *layoutHighGray = new QHBoxLayout(); //!< 水平布局
     labHighGray = new QLabel(u8"高阈值:");
     labHighGray->setAlignment(Qt::AlignLeft);
-    sliderHighGray = new QSlider(Qt::Horizontal);       // 滑动条
+    sliderHighGray = new QSlider(Qt::Horizontal);       //! 滑动条
     sliderHighGray->setRange(0, 255);
     sliderHighGray->setValue(200);
     connect(sliderHighGray, SIGNAL(sliderReleased()), this, SLOT(imageProcess()));

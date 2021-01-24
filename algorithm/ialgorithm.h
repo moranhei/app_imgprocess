@@ -10,8 +10,6 @@
 #include <opencv2/imgproc/types_c.h>
 #include "error.h"
 
-
-
 namespace Algorithm{
 
 /*!
@@ -19,6 +17,8 @@ namespace Algorithm{
  * 所有算法函数开始必须检测形参是否可用，是否在范围以内
  * 所有算法函数必须以int返回，0 表示OK，其余为NG，宏定义在error.h文件
  * 函数命名需按照驼峰命名法
+ * 此外OpenCV中比较简单的核心函数，不建议自己定义类进行封装；
+ * 但是进行封装的目的是为了后面自己重写进行联系
  */
 class IAlgorithm
 {

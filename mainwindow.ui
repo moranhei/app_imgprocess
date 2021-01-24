@@ -33,7 +33,7 @@
        <enum>QTabWidget::West</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_1">
        <attribute name="title">
@@ -244,7 +244,7 @@
      <x>0</x>
      <y>0</y>
      <width>905</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -504,11 +504,19 @@
    </property>
   </action>
   <action name="matchingAssistant">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/assistant/Matching.png</normaloff>:/Image/assistant/Matching.png</iconset>
+   </property>
    <property name="text">
     <string>模板匹配</string>
    </property>
   </action>
   <action name="measureAssistant">
+   <property name="icon">
+    <iconset resource="app_imgprocess.qrc">
+     <normaloff>:/Image/assistant/Measurement.png</normaloff>:/Image/assistant/Measurement.png</iconset>
+   </property>
    <property name="text">
     <string>尺寸测量</string>
    </property>

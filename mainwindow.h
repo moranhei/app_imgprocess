@@ -10,11 +10,14 @@
 #include <QMenuBar>
 #include <QMenu>
 
+#include "modules/utils/cerror.h"
 #include "qimggraphicsitem.h"
 #include "algorithm/cerror.h"
 #include "modules/graphicsExp/cishape.h"
 #include "modules/graphicsExp/cimageeditor.h"
 #include "modules/assistant/csegment.h"
+#include "modules/assistant/cmatching.h"
+#include "modules/assistant/cmeasurement.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -103,6 +106,10 @@ private slots:
 
     void on_segmentAssistant_triggered();
 
+    void on_matchingAssistant_triggered();
+
+    void on_measureAssistant_triggered();
+
 signals:
     /**
      * @brief wheelEvent  针对鼠标滚轮的操作，即放大图像
@@ -118,6 +125,8 @@ private:
     QImgGraphicsItem *itemPixmap;
     GraphicsExp::CImageEditor *imageEditor;
     Assistant::CSegment *segmentWidget = nullptr;
+    Assistant::CMatching *matchingWidget = nullptr;
+    Assistant::CMeasurement *measurementWidget = nullptr;
     /**
      * @brief init  窗口启动时初始化相关操作
      */

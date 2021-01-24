@@ -10,7 +10,8 @@ using namespace GraphicsExp;
 CIFeature::CIFeature(const QVector<QPointF> &pts)
 {
     points = pts;
-    rectBase = QRectF(pts.at(0), pts.at(1));
+    if (pts.size() >= 2)
+        rectBase = QRectF(pts.at(0), pts.at(1));
 }
 
 CIFeature::CIFeature(const QString &str, const QPointF &pt)
@@ -36,7 +37,7 @@ void CIFeature::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         break;
     case Text:
         painter->setFont(font);
-        painter->drawText(textCenter,textString);
+        painter->drawText(textCenter, textString);
     case Image:
 //        painter->drawPixmap(&QPixmap::fromImage(qImg));
         break;
